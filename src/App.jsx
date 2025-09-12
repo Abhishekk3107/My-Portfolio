@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { portfolioData } from './data'
+import AnimatedBackground from './components/AnimatedBackground'
+import { gsap } from 'gsap'
 
 function SocialLinks({ social, className = '' }) {
   return (
@@ -17,16 +19,20 @@ function SocialLinks({ social, className = '' }) {
 }
 
 function Hero({ data }) {
+  useEffect(() => {
+    gsap.from('.hero-animate', { opacity: 0, y: 30, duration: 0.9, stagger: 0.12, ease: 'power3.out' })
+  }, [])
+
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      <div className="container mx-auto px-6 text-center relative z-10">
+      <div className="container mx-auto px-6 text-center relative z-10 hero-animate">
         <div>
-          <img id="profile-image" src={data.personal.image} alt="Profile" className="w-48 h-48 rounded-full mx-auto object-cover border-4 border-accent shadow-2xl animate-float" />
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">Hi, I'm <span className="gradient-text">{data.personal.name}</span></h1>
-          <h2 className="text-2xl md:text-3xl text-muted mb-8">{data.personal.title}</h2>
-          <p className="text-lg md:text-xl text-muted max-w-3xl mx-auto mb-12 leading-relaxed">{data.personal.description}</p>
-          <SocialLinks social={data.personal.social} />
-          <div className="mt-8">
+          <img id="profile-image" src={data.personal.image} alt="Profile" className="w-48 h-48 rounded-full mx-auto object-cover border-4 border-accent shadow-2xl animate-float hero-animate" />
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 hero-animate">Hi, I'm <span className="gradient-text">{data.personal.name}</span></h1>
+          <h2 className="text-2xl md:text-3xl text-muted mb-8 hero-animate">{data.personal.title}</h2>
+          <p className="text-lg md:text-xl text-muted max-w-3xl mx-auto mb-12 leading-relaxed hero-animate">{data.personal.description}</p>
+          <SocialLinks social={data.personal.social} className="hero-animate flex justify-center my-4" />
+          <div className="mt-8 hero-animate">
             <a href="#projects" className="inline-block bg-accent text-primary px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transform hover:scale-105 transition-all duration-300 shadow-lg">View My Work <i className="fas fa-arrow-down ml-2"></i></a>
           </div>
         </div>
@@ -35,6 +41,7 @@ function Hero({ data }) {
   )
 }
 
+// Other components unchanged besides subtle class additions
 function About({ data }) {
   return (
     <section id="about" className="py-20 bg-secondary">
@@ -69,10 +76,13 @@ function About({ data }) {
 }
 
 function Projects({ data }) {
-  const [filter, setFilter] = useState('all')
+  const [filter, setFilter] = React.useState('all')
   const techs = Array.from(new Set(data.projects.flatMap(p => p.technologies)))
-
   const filtered = data.projects.filter(p => filter === 'all' || p.technologies.includes(filter))
+
+  useEffect(() => {
+    gsap.from('.project-card', { opacity: 0, y: 20, duration: 0.6, stagger: 0.08 })
+  }, [filter])
 
   return (
     <section id="projects" className="py-20">
@@ -109,7 +119,7 @@ function Projects({ data }) {
 }
 
 function Contact({ data }) {
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [form, setForm] = React.useState({ name: '', email: '', message: '' })
 
   function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
@@ -129,12 +139,12 @@ function Contact({ data }) {
     setForm({ name: '', email: '', message: '' })
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
     const saved = localStorage.getItem('formData')
     if (saved) setForm(JSON.parse(saved))
   }, [])
 
-  useEffect(() => {
+  React.useEffect(() => {
     localStorage.setItem('formData', JSON.stringify(form))
   }, [form])
 
@@ -167,7 +177,9 @@ export default function App() {
   const data = portfolioData
 
   return (
-    <div>
+    <div className="relative overflow-x-hidden">
+      <AnimatedBackground />
+
       <nav id="navbar" className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
         <div className="container mx-auto px-6 flex items-center justify-between">
           <a href="#hero" className="text-2xl font-bold gradient-text">Abhi Dev</a>
