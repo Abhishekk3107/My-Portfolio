@@ -5,26 +5,24 @@ export default function AnimatedBackground() {
   const containerRef = useRef(null)
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.to('.blob', {
-        y: '+=20',
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        duration: 4,
-        stagger: 0.5
-      })
+    let ctx
+    try {
+      ctx = gsap.context(() => {
+        gsap.to('.blob', {
+          y: '+=20',
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          duration: 4,
+          stagger: 0.5
+        })
+      }, containerRef)
+    } catch (err) {
+      // If GSAP fails, don't block page — silently ignore and leave SVGs visible
+      console.warn('GSAP background animation failed', err)
+    }
 
-      gsap.from('.hero-fade', {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: 'power3.out',
-        stagger: 0.12
-      })
-    }, containerRef)
-
-    return () => ctx.revert()
+    return () => ctx && ctx.revert()
   }, [])
 
   return (
