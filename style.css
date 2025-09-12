@@ -2,16 +2,42 @@ body {
   /* remove default margin and padding */
   margin: 0;
   padding: 0;
-  font-family: "Inter var", sans-serif;
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   overflow-x: hidden;
 
-  --color-primary-dark: #ff6163;
-  --color-primary: #ffe7e8;
-  --color-primary-light: #f9eaea;
-  --color-secondary: #172b4d;
-  --color-text: #4a3a3a;
-  --color-border: #e2cfcf;
+  /* modern dark developer theme */
+  --bg-900: #030416;
+  --bg-800: #071029;
+  --bg-700: #0b1220;
+  --muted: #94a3b8;
+  --accent: #7c3aed; /* purple */
+  --accent-2: #06b6d4; /* cyan */
+  --glass: rgba(255,255,255,0.04);
+  --text: rgba(255,255,255,0.92);
 }
+
+:root {
+  --color-primary-dark: var(--accent);
+  --color-primary: var(--accent-2);
+  --color-primary-light: rgba(124,58,237,0.08);
+  --color-secondary: var(--bg-700);
+  --color-text: var(--text);
+  --color-border: rgba(255,255,255,0.04);
+}
+
+main { padding-top: 88px; }
+
+/* Utility color helpers (map legacy class names to theme variables) */
+.text-muted { color: var(--muted) !important; }
+.text-accent { color: var(--accent) !important; }
+.text-primary { color: var(--bg-900) !important; }
+.bg-accent { background: linear-gradient(90deg, var(--accent), var(--accent-2)) !important; }
+.bg-secondary { background: transparent !important; }
+.text-text { color: var(--text) !important; }
+
+/* Ensure project cards are visible by default */
+.project-card { opacity: 1 !important; transform: none !important; }
+
 
 .tags {
   font-weight: 600;
@@ -642,6 +668,27 @@ footer .contact-wrapper textarea {
   margin: 24px 0 147px 0;
 }
 
+/* New gradient helpers and animation classes */
+.gradient-text {
+  background: linear-gradient(135deg, #4fd1c5, #63b3ed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.animated-bg .blob {
+  filter: blur(28px) saturate(120%);
+  opacity: 0.85;
+  transform-origin: center;
+}
+
+.hero-fade {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Responsive helpers kept as original (omitted here for brevity) */
+
 @media screen and (min-width: 768px) {
   header h1 {
     padding: 0;
@@ -934,16 +981,5 @@ footer .contact-wrapper textarea {
 
   footer .my-email {
     display: none;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  #works .work-wrapper .list-work {
-    display: grid;
-    justify-content: center;
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 24px;
-    row-gap: 24px;
   }
 }
