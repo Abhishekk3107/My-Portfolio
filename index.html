@@ -1,441 +1,615 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-    <link rel="stylesheet" href="style.css" />
-    <script
-      src="https://kit.fontawesome.com/a1c06e2fcd.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="script.js" defer></script>
-    <title>Abhishek's Portfolio</title>
-  </head>
-  <body>
-    <header>
-      <h1><a href="#">Abhi Dev</a></h1>
-      <nav id="desktop-nav">
-        <ul>
-                    <li><a id="about-me-desktop-menu-item" href="#about-me">About</a></li>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhishek Kumar - Full Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a1c06e2fcd.js" crossorigin="anonymous"></script>
+    <style>
+        /* Custom animations and styles */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-slideInLeft {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .hidden-element {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #4fd1c5, #63b3ed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+            transform: perspective(1000px);
+        }
+        
+        .project-card:hover {
+            transform: perspective(1000px) rotateY(5deg) rotateX(5deg) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .skill-tag {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #4fd1c5, #63b3ed);
+        }
+        
+        .navbar-blur {
+            backdrop-filter: blur(20px);
+            background: rgba(26, 32, 44, 0.9);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a202c',
+                        secondary: '#2d3748',
+                        accent: '#4fd1c5',
+                        text: '#e2e8f0',
+                        muted: '#a0aec0',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-primary text-text font-sans overflow-x-hidden">
+    <!-- Portfolio Data Object -->
+    <script>
+        const portfolioData = {
+            personal: {
+                name: "Abhishek Kumar",
+                title: "Full Stack Web Developer",
+                location: "Ghaziabad, India",
+                description: "I can help you build a website from front-end to back-end. Look through some of my work and projects! If you like what you see and have a project that needs to be coded, don't hesitate to contact me.",
+                about: "Who am I? A conscientious Web Developer from Ghaziabad, India. A BCA student and tech enthusiast looking for a challenge. If you like what you see and have a project that needs to be coded in an organized, conscientious, and dynamic way, do not hesitate to contact me.",
+                resume: "./images/Abhishek-Kumar-Resume.pdf",
+                image: "images/your_image.jpg",
+                social: {
+                    linkedin: "https://www.linkedin.com/in/abhishekkumar3107/",
+                    github: "https://github.com/Abhishekk3107",
+                    instagram: "https://www.instagram.com/abhi31_07"
+                }
+            },
+            skills: {
+                "Languages & Concepts": ["JavaScript", "HTML", "CSS", "C language", "C++", "Data Structure and Algorithms", "Python", "MySQL", "MongoDB"],
+                "Frameworks & Libraries": ["Bootstrap", "Tailwind CSS", "React"],
+                "Tools & Technologies": ["GitHub", "VS Code", "MS Office", "Netlify"]
+            },
+            projects: [
+                {
+                    title: "Freewaystudy Project",
+                    description: "An online platform providing students with free access to a wide range of study materials and educational resources.",
+                    image: "images/freewaystudy.png",
+                    technologies: ["HTML", "CSS", "JavaScript"],
+                    liveUrl: "https://www.freewaystudy.tech/",
+                    githubUrl: null
+                },
+                {
+                    title: "Salarify Project",
+                    description: "A tool designed to help users calculate and understand salary breakdowns, including taxes and deductions.",
+                    image: "images/salarify.png",
+                    technologies: ["JavaScript", "React", "CSS"],
+                    liveUrl: "https://salarifyio.vercel.app/",
+                    githubUrl: "https://github.com/Abhishekk3107/Salarify"
+                },
+                {
+                    title: "Ask AI Chatbot",
+                    description: "A conversational chatbot powered by the Google Gemini API to answer user queries and engage in real-time conversations.",
+                    image: "images/ask-ai.png",
+                    technologies: ["JavaScript", "API", "React"],
+                    liveUrl: "https://ask-ai-01.netlify.app/",
+                    githubUrl: "https://github.com/Abhishekk3107/ask-ai-public"
+                },
+                {
+                    title: "Amazon Homepage Clone",
+                    description: "This project is a clone of the Amazon homepage using HTML and CSS.",
+                    image: "images/amazon_homepage_clone.png",
+                    technologies: ["HTML", "CSS"],
+                    liveUrl: "https://abhishekk3107.github.io/Amazon-Homepage-Clone/",
+                    githubUrl: "https://github.com/Abhishekk3107/Amazon-Homepage-Clone"
+                },
+                {
+                    title: "Tic Tac Toe",
+                    description: "A classic Tic Tac Toe game built with HTML, CSS, and JavaScript.",
+                    image: "images/tic_tac_toe.png",
+                    technologies: ["HTML", "CSS", "JavaScript"],
+                    liveUrl: "https://abhishekk3107.github.io/Tic-Tac-Toe-by-HTML-CSS-and-JS/",
+                    githubUrl: "https://github.com/Abhishekk3107/Tic-Tac-Toe-by-HTML-CSS-and-JS"
+                },
+                {
+                    title: "Rock Paper Scissors",
+                    description: "Rock Paper Scissors game implemented using HTML, CSS, and JavaScript.",
+                    image: "images/rock_paper_scissors.png",
+                    technologies: ["HTML", "CSS", "JavaScript"],
+                    liveUrl: "https://abhishekk3107.github.io/rock-papers-scissors/",
+                    githubUrl: "https://github.com/Abhishekk3107/rock-papers-scissors"
+                },
+                {
+                    title: "Dark Mode Button",
+                    description: "A simple dark mode toggle button using HTML, CSS, and JavaScript.",
+                    image: "images/dark_mode_button.png",
+                    technologies: ["HTML", "CSS", "JavaScript"],
+                    liveUrl: "https://abhishekk3107.github.io/Dark-mode-button/",
+                    githubUrl: "https://github.com/Abhishekk3107/Dark-mode-button"
+                },
+                {
+                    title: "Spotify Clone",
+                    description: "A simple responsive clone of Spotify homepage created using HTML & CSS",
+                    image: "images/spotify.png",
+                    technologies: ["HTML", "CSS"],
+                    liveUrl: "https://abhishekk3107.github.io/Spotify-Clone/",
+                    githubUrl: "https://github.com/Abhishekk3107/Spotify-Clone"
+                },
+                {
+                    title: "Responsive Calculator",
+                    description: "A simple responsive calculator created using HTML, CSS and JS",
+                    image: "images/Calc.png",
+                    technologies: ["HTML", "CSS", "JavaScript"],
+                    liveUrl: "https://abhishekk3107.github.io/Afame_Technologies_Calculator/",
+                    githubUrl: "https://github.com/Abhishekk3107/Afame_Technologies_Calculator"
+                },
+                {
+                    title: "Tree for Me Project",
+                    description: "An initiative where you can sponsor the plantation of trees - Tree 4 me",
+                    image: "images/Tree.jpg",
+                    technologies: ["HTML", "CSS", "JavaScript"],
+                    liveUrl: "https://abhishekk3107.github.io/TREE_4_ME//",
+                    githubUrl: "https://github.com/Abhishekk3107/TREE_4_ME"
+                }
+            ]
+        };
+    </script>
 
-          <li><a id="works-desktop-menu-item" href="#works">Portfolio</a></li>
-          <li><a id="footer-desktop-menu-item" href="#footer">Contact</a></li>
-        </ul>
-      </nav>
-      <div id="open-menu" class="toggleNav" href="#">
-        <i class="fa-solid fa-bars"></i>
-      </div>
-
-      <nav id="mobile-nav">
-        <div id="close-menu" class="toggleNav" href="#">
-          <i class="fa-solid fa-xmark"></i>
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <a href="#hero" class="text-2xl font-bold gradient-text">Abhi Dev</a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#hero" class="nav-link text-text hover:text-accent transition-colors">Home</a>
+                <a href="#about" class="nav-link text-text hover:text-accent transition-colors">About</a>
+                <a href="#projects" class="nav-link text-text hover:text-accent transition-colors">Projects</a>
+                <a href="#contact" class="nav-link text-text hover:text-accent transition-colors">Contact</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-text hover:text-accent">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
         </div>
-        <ul>
-                    <li><a id="about-me-mobile-menu-item" href="#about-me">About</a></li>
-
-          <li><a id="works-mobile-menu-item" href="#works">Portfolio</a></li>
-          <li><a id="footer-mobile-menu-item" href="#footer">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <section id="headline">
-      <div class="headline-wrapper">
-        <div style="text-align: center; margin-bottom: 20px">
-          <img
-            src="images/your_image.jpg"
-            alt="Your Profile Picture"
-            style="
-              border-radius: 50%;
-              width: 200px;
-              height: 200px;
-              margin-top: 10%;
-              object-fit: cover;
-            "
-          />
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="fixed top-0 right-0 h-full w-80 bg-secondary glass-effect transform translate-x-full transition-transform duration-300 md:hidden">
+            <div class="p-6">
+                <button id="mobile-menu-close" class="float-right text-text hover:text-accent">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                <nav class="mt-12 space-y-6">
+                    <a href="#hero" class="mobile-nav-link block text-text hover:text-accent text-lg">Home</a>
+                    <a href="#about" class="mobile-nav-link block text-text hover:text-accent text-lg">About</a>
+                    <a href="#projects" class="mobile-nav-link block text-text hover:text-accent text-lg">Projects</a>
+                    <a href="#contact" class="mobile-nav-link block text-text hover:text-accent text-lg">Contact</a>
+                </nav>
+            </div>
         </div>
-        <h1 class="section-title">
-          Hi there. I'm Abhishek Kumar<br /><span> Web Developer</span>
-        </h1>
-        <p>
-          I can help you build a website from front-end to back-end. Look
-          through some of my work and projects! If you like what you see and
-          have a project that needs to be coded, don’t hesitate to contact me.
-        </p>
-        <ul>
-          <li>
-            <a
-              class="social"
-              href="https://www.linkedin.com/in/abhishekkumar3107/"
-              ><i class="social-icon fa-brands fa-linkedin"></i
-            ></a>
-          </li>
-          <li>
-            <a class="social" href="https://github.com/Abhishekk3107"
-              ><i class="social-icon fa-brands fa-github"></i
-            ></a>
-          </li>
-          <li>
-            <a class="social" href="https://www.instagram.com/abhi31_07"
-              ><i class="social-icon fa-brands fa-instagram"></i
-            ></a>
-          </li>
-        </ul>
-        <a class="btn-round" href="#works"
-          ><i class="fa-solid fa-angle-down"></i
-        ></a>
-      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Background Animation -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-20 left-20 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
+            <div class="absolute top-40 right-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-float" style="animation-delay: 1s;"></div>
+            <div class="absolute bottom-20 left-1/3 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-float" style="animation-delay: 2s;"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="hero-content hidden-element">
+                <div class="mb-8">
+                    <img id="profile-image" src="" alt="Profile Picture" class="w-48 h-48 rounded-full mx-auto object-cover border-4 border-accent shadow-2xl animate-float">
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    Hi, I'm <span class="gradient-text" id="hero-name"></span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl text-muted mb-8" id="hero-title"></h2>
+                <p class="text-lg md:text-xl text-muted max-w-3xl mx-auto mb-12 leading-relaxed" id="hero-description"></p>
+                
+                <!-- Social Links -->
+                <div class="flex justify-center space-x-6 mb-12" id="social-links">
+                    <!-- Social links will be generated here -->
+                </div>
+                
+                <!-- CTA Button -->
+                <a href="#projects" class="inline-block bg-accent text-primary px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                    View My Work
+                    <i class="fas fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+        </div>
     </section>
 
-    <section id="about-me">
-      <div class="about-me-wrapper">
-        <div class="resume">
-          <h2 class="section-title">About me</h2>
-          <p>
-            Who am I? A conscientious Web Developer from Ghaziabad , India.A BCA
-            student and tech enthusiast looking for a challenge. If you like
-            what you see and have a project that needs to be coded in an
-            organized, conscientious, and dynamic way, do not hesitate to
-            contact me.
-          </p>
-          <a class="buttons" href="./images/Abhishek_Kumar_Resume.pdf">Get My Resume</a>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-secondary">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text section-title hidden-element">About Me</h2>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="about-text hidden-element">
+                        <p class="text-lg text-muted leading-relaxed mb-8" id="about-description"></p>
+                        <a id="resume-link" href="" class="inline-block bg-accent text-primary px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transform hover:scale-105 transition-all duration-300">
+                            <i class="fas fa-download mr-2"></i>
+                            Download Resume
+                        </a>
+                    </div>
+                    
+                    <div class="skills-container hidden-element">
+                        <h3 class="text-2xl font-semibold mb-6 text-accent">Skills & Technologies</h3>
+                        <div id="skills-list">
+                            <!-- Skills will be generated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <ul class="list-skill">
-          <li class="skill" tabindex="0">
-            <img src="images/IconSkill.png" alt="" />
-            <!-- Decorative image -->
-            <h3>Languages and Concepts</h3>
-            <ul class="list-tag">
-              <li class="tags">JavaScript</li>
-              <li class="tags">HTML</li>
-              <li class="tags">CSS</li>
-              <li class="tags">C language</li>
-              <li class="tags">C++</li>
-<li class="tags">Data Structure and Algorithms</li>
-
-              <li class="tags">Python</li>
-                            <li class="tags">MySQL</li>
-                                          <li class="tags">MongoDB</li>
-
-
-             
-
-
-
-            </ul>
-          </li>
-          <li class="skill" tabindex="0">
-            <img src="images/IconFramework.png" alt="" />
-            <!-- Decorative image -->
-            <h3>Framework and Libraries</h3>
-            <ul class="list-tag">
-              <li class="tags">Bootstrap</li>
-<li class="tags">Tailwind CSS</li>
-              <li class="tags">React</li>
-            </ul>
-          </li>
-          <li class="skill" tabindex="0">
-            <img src="images/Icon Langguage.png" alt="" />
-            <!-- Decorative image -->
-            <h3>Skills and Dev Tools</h3>
-            <ul class="list-tag">
-               <li class="tags">GitHub</li>
-             <li class="tags">VS code</li>   
-              <li class="tags">MS Office</li>
-               <li class="tags">Netlify</li>
-              
-
-            </ul>
-          </li>
-        </ul>
-      </div>
     </section>
 
-    <section id="works">
-      <div class="work-wrapper">
-        <h2 class="section-title">My Recent Works</h2>
-        <hr />
-        <ul id="list-work" class="list-work">
-
-
-          <li class="work">
-  <img src="images/freewaystudy.png" alt="Freewaystudy" />
-  <div>
-    <h2>Freewaystudy project</h2>
-    <p>
-      An online platform providing students with free access to a wide range of study materials and educational resources.
-    </p>
-   
-    <a
-      href="https://www.freewaystudy.tech/"
-      class="buttons"
-      >View Live</a
-    >
-  </div>
-</li>
-          <li class="work">
-  <img src="images/salarify.png" alt="Salarify" />
-  <div>
-    <h2>Salarify project</h2>
-    <p>
-      A tool designed to help users calculate and understand salary breakdowns, including taxes and deductions.
-    </p>
-    <a
-      href="https://github.com/Abhishekk3107/Salarify"
-      class="buttons"
-      >View on GitHub</a
-    >
-    <a
-      href="https://salarifyio.vercel.app/"
-      class="buttons"
-      >View Live</a
-    >
-  </div>
-</li>
-
-        <li class="work">
-  <img src="images/ask_ai.png" alt="Ask AI Chatbot" />
-  <div>
-    <h2>Ask AI Chatbot</h2>
-    <p>
-      A conversational chatbot powered by the Google Gemini API to answer user queries and engage in real-time conversations.
-    </p>
-    <a
-      href="https://github.com/Abhishekk3107/ask-ai-public"
-      class="buttons"
-      >View on GitHub</a
-    >
-    <a
-      href="https://ask-ai-01.netlify.app/"
-      class="buttons"
-      >View Live</a
-    >
-  </div>
-</li>
-          <!-- Project 1 -->
-          <li class="work">
-            <img
-              src="images/amazon_homepage_clone.png"
-              alt="Amazon Homepage Clone"
-            />
-            <div>
-              <h2>Amazon Homepage Clone</h2>
-              <p>
-                This project is a clone of the Amazon homepage using HTML and
-                CSS.
-              </p>
-              <a
-                href="https://github.com/Abhishekk3107/Amazon-Homepage-Clone"
-                class="buttons"
-                >View on GitHub</a
-              >
-              <a
-                href="https://abhishekk3107.github.io/Amazon-Homepage-Clone/"
-                class="buttons"
-                >View Live</a
-              >
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text section-title hidden-element">My Projects</h2>
+            
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12 filter-buttons hidden-element">
+                <button class="filter-btn px-6 py-2 rounded-full bg-secondary text-text hover:bg-accent hover:text-primary transition-all active" data-filter="all">
+                    All Projects
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-secondary text-text hover:bg-accent hover:text-primary transition-all" data-filter="JavaScript">
+                    JavaScript
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-secondary text-text hover:bg-accent hover:text-primary transition-all" data-filter="React">
+                    React
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-secondary text-text hover:text-accent hover:text-primary transition-all" data-filter="HTML">
+                    HTML/CSS
+                </button>
             </div>
-          </li>
-          <!-- Project 2 -->
-          <li class="work">
-            <img src="images/tic_tac_toe.png" alt="Tic Tac Toe" />
-            <div>
-              <h2>Tic Tac Toe</h2>
-              <p>
-                A classic Tic Tac Toe game built with HTML, CSS, and JavaScript.
-              </p>
-              <a
-                href="https://github.com/Abhishekk3107/Tic-Tac-Toe-by-HTML-CSS-and-JS"
-                class="buttons"
-                >View on GitHub</a
-              >
-              <a
-                href="https://abhishekk3107.github.io/Tic-Tac-Toe-by-HTML-CSS-and-JS/"
-                class="buttons"
-                >View Live</a
-              >
+            
+            <!-- Projects Grid -->
+            <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projects will be generated here -->
             </div>
-          </li>
-          <!-- Project 3 -->
-          <li class="work">
-            <img
-              src="images/rock_paper_scissors.png"
-              alt="Rock Paper Scissors"
-            />
-            <div>
-              <h2>Rock Paper Scissors</h2>
-              <p>
-                Rock Paper Scissors game implemented using HTML, CSS, and
-                JavaScript.
-              </p>
-              <a
-                href="https://github.com/Abhishekk3107/rock-papers-scissors"
-                class="buttons"
-                >View on GitHub</a
-              >
-              <a
-                href="https://abhishekk3107.github.io/rock-papers-scissors/"
-                class="buttons"
-                >View Live</a
-              >
-            </div>
-          </li>
-          <!-- Project 4 -->
-          <li class="work">
-            <img src="images/dark_mode_button.png" alt="Dark Mode Button" />
-            <div>
-              <h2>Dark Mode Button</h2>
-              <p>
-                A simple dark mode toggle button using HTML, CSS, and
-                JavaScript.
-              </p>
-              <a
-                href="https://github.com/Abhishekk3107/Dark-mode-button"
-                class="buttons"
-                >View on GitHub</a
-              >
-              <a
-                href="https://abhishekk3107.github.io/Dark-mode-button/"
-                class="buttons"
-                >View Live</a
-              >
-            </div>
-          </li>
-
-          <!-- Project 5-->
-           <li class="work">
-            <img src="images/spotify.png" alt="Spotify clone" />
-            <div>
-              <h2>Spotify Clone</h2>
-              <p>
-                A simple responsive clone of Spotify homepage created using HTML & CSS
-              </p>
-              <a
-                href="https://github.com/Abhishekk3107/Spotify-Clone"
-                class="buttons"
-                >View on GitHub</a
-              >
-              <a
-                href="https://abhishekk3107.github.io/Spotify-Clone/"
-                class="buttons"
-                >View Live</a
-              >
-            </div>
-          </li>
-
-          <!-- Project -->
-           <li class="work">
-            <img src="images/Calc.png" alt="Responsive Calculator" />
-            <div>
-              <h2>Responsive Calculator</h2>
-              <p>
-                A simple responsive calculator created using HTML , CSS and JS
-              </p>
-              <a
-                href="https://github.com/Abhishekk3107/Afame_Technologies_Calculator"
-                class="buttons"
-                >View on GitHub</a
-              >
-              <a
-                href="https://abhishekk3107.github.io/Afame_Technologies_Calculator/"
-                class="buttons"
-                >View Live</a
-              >
-            </div>
-          </li>
-</li>
-
-          <!-- Project -->
-           <li class="work">
-            <img src="images/Tree.jpg" alt="Tree 4 me " />
-            <div>
-              <h2>Tree for me project</h2>
-              <p>
-                An initiative where you can sponsor the plantation of trees - Tree 4 me
-              </p>
-              <a
-                href="https://github.com/Abhishekk3107/TREE_4_ME"
-                class="buttons"
-                >View on GitHub</a
-              >
-              <a
-                href="https://abhishekk3107.github.io/TREE_4_ME//"
-                class="buttons"
-                >View Live</a
-              >
-            </div>
-          </li>
-        </ul>
-      </div>
+        </div>
     </section>
 
-    <footer id="footer">
-      <div class="footer-wrapper">
-        <div class="contact-wrapper">
-          <h3 class="section-title">
-            I'm always interested in hearing about new projects, so if you'd
-            like to chat, please get in touch.
-          </h3>
-          <form
-            id="form"
-            action="https://formspree.io/f/movaarqz"
-            method="POST"
-          >
-            <label for="name">
-              <input
-                id="name"
-                type="text"
-                placeholder="Name"
-                name="name"
-                maxlength="30"
-                required
-              />
-            </label>
-            <label for="email">
-              <input
-                id="email"
-                type="email"
-                placeholder="example@example.com"
-                name="email"
-                required
-              />
-            </label>
-            <label for="message">
-              <textarea
-                id="message"
-                name="message"
-                rows="10"
-                placeholder="Message"
-                required
-              ></textarea>
-            </label>
-            <button class="buttons" type="submit">Get in touch</button>
-          </form>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-secondary">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text section-title hidden-element">Get In Touch</h2>
+                
+                <div class="text-center mb-12 contact-intro hidden-element">
+                    <p class="text-lg text-muted leading-relaxed">
+                        I'm always interested in hearing about new projects, so if you'd like to chat, please get in touch.
+                    </p>
+                </div>
+                
+                <form id="contact-form" class="max-w-2xl mx-auto contact-form hidden-element" action="https://formspree.io/f/movaarqz" method="POST">
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <input type="text" name="name" placeholder="Your Name" required 
+                               class="w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg text-text placeholder-muted focus:border-accent focus:outline-none transition-colors">
+                        <input type="email" name="email" placeholder="your.email@example.com" required 
+                               class="w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg text-text placeholder-muted focus:border-accent focus:outline-none transition-colors">
+                    </div>
+                    <textarea name="message" rows="6" placeholder="Your Message" required 
+                              class="w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg text-text placeholder-muted focus:border-accent focus:outline-none transition-colors mb-6"></textarea>
+                    <button type="submit" class="w-full bg-accent text-primary py-3 rounded-lg font-semibold hover:bg-opacity-90 transform hover:scale-105 transition-all duration-300">
+                        Send Message
+                        <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </form>
+                
+                <!-- Social Links -->
+                <div class="flex justify-center space-x-6 mt-12 social-footer hidden-element">
+                    <!-- Social links will be generated here -->
+                </div>
+            </div>
         </div>
-      </div>
-      <ul>
-        <li>
-          <a href="https://www.linkedin.com/in/abhishekkumar3107"
-            ><i class="social-icon fa-brands fa-linkedin"></i
-          ></a>
-        </li>
-        <li>
-          <a href="https://github.com/Abhishekk3107"
-            ><i class="social-icon fa-brands fa-github"></i
-          ></a>
-        </li>
-        <li>
-          <a href="https://www.instagram.com/abhi31_07"
-            ><i class="social-icon fa-brands fa-instagram"></i
-          ></a>
-        </li>
-      </ul>
-      <p class="copy">
-        Copyright &copy; 2024 Abhishek Kumar<br />All rights reserved.
-      </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-muted">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2025 Abhishek Kumar. All rights reserved.</p>
+        </div>
     </footer>
-  </body>
-</html>
 
+    <script>
+        // DOM Elements
+        const navbar = document.getElementById('navbar');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        
+        // Initialize the portfolio
+        document.addEventListener('DOMContentLoaded', function() {
+            populateHeroSection();
+            populateAboutSection();
+            populateProjectsSection();
+            setupNavigation();
+            setupScrollAnimations();
+            setupProjectFilters();
+            setupFormValidation();
+        });
+
+        // Populate Hero Section
+        function populateHeroSection() {
+            document.getElementById('hero-name').textContent = portfolioData.personal.name;
+            document.getElementById('hero-title').textContent = portfolioData.personal.title;
+            document.getElementById('hero-description').textContent = portfolioData.personal.description;
+            document.getElementById('profile-image').src = portfolioData.personal.image;
+            
+            // Generate social links
+            const socialContainer = document.getElementById('social-links');
+            const socialFooter = document.querySelector('.social-footer');
+            const socialHTML = Object.entries(portfolioData.personal.social).map(([platform, url]) => {
+                const iconClass = platform === 'linkedin' ? 'fa-linkedin' : 
+                                 platform === 'github' ? 'fa-github' : 'fa-instagram';
+                return `<a href="${url}" target="_blank" class="text-3xl text-muted hover:text-accent transition-colors transform hover:scale-110">
+                          <i class="fab ${iconClass}"></i>
+                        </a>`;
+            }).join('');
+            
+            socialContainer.innerHTML = socialHTML;
+            socialFooter.innerHTML = socialHTML;
+        }
+
+        // Populate About Section
+        function populateAboutSection() {
+            document.getElementById('about-description').textContent = portfolioData.personal.about;
+            document.getElementById('resume-link').href = portfolioData.personal.resume;
+            
+            // Generate skills
+            const skillsContainer = document.getElementById('skills-list');
+            const skillsHTML = Object.entries(portfolioData.skills).map(([category, skills]) => `
+                <div class="mb-6">
+                    <h4 class="text-lg font-semibold mb-3 text-accent">${category}</h4>
+                    <div class="flex flex-wrap gap-2">
+                        ${skills.map(skill => `
+                            <span class="skill-tag px-3 py-1 bg-primary text-text rounded-full text-sm border border-gray-600 hover:border-accent">
+                                ${skill}
+                            </span>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+            
+            skillsContainer.innerHTML = skillsHTML;
+        }
+
+        // Populate Projects Section
+        function populateProjectsSection() {
+            const projectsGrid = document.getElementById('projects-grid');
+            
+            const projectsHTML = portfolioData.projects.map((project, index) => `
+                <div class="project-card hidden-element bg-secondary rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300" 
+                     data-technologies="${project.technologies.join(',')}" style="animation-delay: ${index * 0.1}s">
+                    <img src="${project.image}" alt="${project.title}" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-accent">${project.title}</h3>
+                        <p class="text-muted mb-4 leading-relaxed">${project.description}</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${project.technologies.map(tech => `
+                                <span class="px-2 py-1 bg-primary text-accent text-xs rounded border border-accent">
+                                    ${tech}
+                                </span>
+                            `).join('')}
+                        </div>
+                        <div class="flex gap-3">
+                            ${project.githubUrl ? `
+                                <a href="${project.githubUrl}" target="_blank" 
+                                   class="flex-1 bg-primary text-accent border border-accent px-4 py-2 rounded hover:bg-accent hover:text-primary transition-all text-center">
+                                    <i class="fab fa-github mr-2"></i>Code
+                                </a>
+                            ` : ''}
+                            <a href="${project.liveUrl}" target="_blank" 
+                               class="flex-1 bg-accent text-primary px-4 py-2 rounded hover:bg-opacity-90 transition-all text-center">
+                                <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            projectsGrid.innerHTML = projectsHTML;
+        }
+
+        // Setup Navigation
+        function setupNavigation() {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const offsetTop = target.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        closeMobileMenu();
+                    }
+                });
+            });
+
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            mobileMenuClose.addEventListener('click', closeMobileMenu);
+            
+            // Close mobile menu on outside click
+            document.addEventListener('click', function(e) {
+                if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('navbar-blur');
+                } else {
+                    navbar.classList.remove('navbar-blur');
+                }
+            });
+        }
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('translate-x-full');
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('translate-x-full');
+        }
+
+        // Setup Scroll Animations
+        function setupScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fadeInUp');
+                        entry.target.classList.remove('hidden-element');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.hidden-element').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Setup Project Filters
+        function setupProjectFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.dataset.filter;
+                    
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active', 'bg-accent', 'text-primary'));
+                    this.classList.add('active', 'bg-accent', 'text-primary');
+                    
+                    // Filter projects
+                    projectCards.forEach(card => {
+                        const technologies = card.dataset.technologies.split(',');
+                        
+                        if (filter === 'all' || technologies.includes(filter)) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeInUp 0.5s ease-out forwards';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+
+        // Setup Form Validation
+        function setupFormValidation() {
+            const form = document.getElementById('contact-form');
+            
+            form.addEventListener('submit', function(e) {
+                const name = form.querySelector('[name="name"]').value.trim();
+                const email = form.querySelector('[name="email"]').value.trim();
+                const message = form.querySelector('[name="message"]').value.trim();
+                
+                if (!name || !email || !message) {
+                    e.preventDefault();
+                    alert('Please fill in all fields');
+                    return;
+                }
+                
+                if (!isValidEmail(email)) {
+                    e.preventDefault();
+                    alert('Please enter a valid email address');
+                    return;
+                }
+                
+                // Show success message
+                setTimeout(() => {
+                    alert('Message sent successfully! I\'ll get back to you soon.');
+                    form.reset();
+                }, 100);
+            });
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
+</body>
+</html>
