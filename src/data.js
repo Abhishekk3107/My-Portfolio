@@ -50,6 +50,54 @@ export const portfolioData = {
       technologies: ["HTML", "CSS"],
       liveUrl: "https://abhishekk3107.github.io/Amazon-Homepage-Clone/",
       githubUrl: "https://github.com/Abhishekk3107/Amazon-Homepage-Clone"
+    },
+    {
+      title: "Tic Tac Toe",
+      description: "A classic Tic Tac Toe game built with HTML, CSS, and JavaScript.",
+      image: "/images/tic_tac_toe.png",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      liveUrl: "https://abhishekk3107.github.io/Tic-Tac-Toe-by-HTML-CSS-and-JS/",
+      githubUrl: "https://github.com/Abhishekk3107/Tic-Tac-Toe-by-HTML-CSS-and-JS"
+    },
+    {
+      title: "Rock Paper Scissors",
+      description: "Rock Paper Scissors game implemented using HTML, CSS, and JavaScript.",
+      image: "/images/rock_paper_scissors.png",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      liveUrl: "https://abhishekk3107.github.io/rock-papers-scissors/",
+      githubUrl: "https://github.com/Abhishekk3107/rock-papers-scissors"
+    },
+    {
+      title: "Dark Mode Button",
+      description: "A simple dark mode toggle button using HTML, CSS, and JavaScript.",
+      image: "/images/dark_mode_button.png",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      liveUrl: "https://abhishekk3107.github.io/Dark-mode-button/",
+      githubUrl: "https://github.com/Abhishekk3107/Dark-mode-button"
+    },
+    {
+      title: "Spotify Clone",
+      description: "A simple responsive clone of Spotify homepage created using HTML & CSS",
+      image: "/images/spotify.png",
+      technologies: ["HTML", "CSS"],
+      liveUrl: "https://abhishekk3107.github.io/Spotify-Clone/",
+      githubUrl: "https://github.com/Abhishekk3107/Spotify-Clone"
+    },
+    {
+      title: "Responsive Calculator",
+      description: "A simple responsive calculator created using HTML, CSS and JS",
+      image: "/images/Calc.png",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      liveUrl: "https://abhishekk3107.github.io/Afame_Technologies_Calculator/",
+      githubUrl: "https://github.com/Abhishekk3107/Afame_Technologies_Calculator"
+    },
+    {
+      title: "Tree for Me Project",
+      description: "An initiative where you can sponsor the plantation of trees - Tree 4 me",
+      image: "/images/Tree.jpg",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      liveUrl: "https://abhishekk3107.github.io/TREE_4_ME//",
+      githubUrl: "https://github.com/Abhishekk3107/TREE_4_ME"
     }
   ]
 }
