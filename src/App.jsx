@@ -18,16 +18,34 @@ function SocialLinks({ social, className = '' }) {
   )
 }
 
+function applyGsapSafe(selector, fromVars, toVars) {
+  try {
+    if (!window || !window.document) return
+    gsap.fromTo(selector, fromVars, { ...toVars, clearProps: 'all' })
+  } catch (err) {
+    // fallback: make elements visible
+    try {
+      document.querySelectorAll(selector).forEach(el => {
+        el.style.opacity = '1'
+        el.style.transform = 'none'
+      })
+    } catch (e) {
+      // ignore
+    }
+    console.warn('GSAP animation failed for', selector, err)
+  }
+}
+
 function Hero({ data }) {
   useEffect(() => {
-    gsap.from('.hero-animate', { opacity: 0, y: 30, duration: 0.9, stagger: 0.12, ease: 'power3.out' })
+    applyGsapSafe('.hero-animate', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.9, stagger: 0.12, ease: 'power3.out' })
   }, [])
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       <div className="container mx-auto px-6 text-center relative z-10 hero-animate">
         <div>
-          <img id="profile-image" src={data.personal.image} alt="Profile" className="w-48 h-48 rounded-full mx-auto object-cover border-4 border-accent shadow-2xl animate-float hero-animate" />
+          <img id="profile-image" src={data.personal.image} alt="Profile" className="w-48 h-48 rounded-full mx-auto object-cover border-4 border-accent shadow-2xl animate-float hero-animate" onError={(e)=>{e.currentTarget.style.display='none'}} />
           <h1 className="text-5xl md:text-7xl font-bold mb-6 hero-animate">Hi, I'm <span className="gradient-text">{data.personal.name}</span></h1>
           <h2 className="text-2xl md:text-3xl text-muted mb-8 hero-animate">{data.personal.title}</h2>
           <p className="text-lg md:text-xl text-muted max-w-3xl mx-auto mb-12 leading-relaxed hero-animate">{data.personal.description}</p>
@@ -41,7 +59,6 @@ function Hero({ data }) {
   )
 }
 
-// Other components unchanged besides subtle class additions
 function About({ data }) {
   return (
     <section id="about" className="py-20 bg-secondary">
@@ -81,7 +98,7 @@ function Projects({ data }) {
   const filtered = data.projects.filter(p => filter === 'all' || p.technologies.includes(filter))
 
   useEffect(() => {
-    gsap.from('.project-card', { opacity: 0, y: 20, duration: 0.6, stagger: 0.08 })
+    applyGsapSafe('.project-card', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 })
   }, [filter])
 
   return (
@@ -98,7 +115,7 @@ function Projects({ data }) {
         <div id="projects-grid" className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filtered.map((project, idx) => (
             <div key={project.title} className="project-card bg-secondary rounded-lg overflow-hidden shadow-lg transition-all duration-300" style={{animationDelay: `${idx*0.1}s`}}>
-              <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
+              <img src={project.image} alt={project.title} className="w-full h-48 object-cover" onError={(e)=>{e.currentTarget.style.display='none'}} />
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-3 text-accent">{project.title}</h3>
                 <p className="text-muted mb-4 leading-relaxed">{project.description}</p>
