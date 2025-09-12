@@ -27,6 +27,18 @@ body {
 
 main { padding-top: 88px; }
 
+/* Utility color helpers (map legacy class names to theme variables) */
+.text-muted { color: var(--muted) !important; }
+.text-accent { color: var(--accent) !important; }
+.text-primary { color: var(--bg-900) !important; }
+.bg-accent { background: linear-gradient(90deg, var(--accent), var(--accent-2)) !important; }
+.bg-secondary { background: transparent !important; }
+.text-text { color: var(--text) !important; }
+
+/* Ensure project cards are visible by default */
+.project-card { opacity: 1 !important; transform: none !important; }
+
+
 .tags {
   font-weight: 600;
   font-size: 0.75rem;
