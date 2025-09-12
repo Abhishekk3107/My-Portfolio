@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import HeroTextRotator from './HeroTextRotator'
 
 export default function Hero({ data }) {
   useEffect(() => {
