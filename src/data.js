@@ -11,7 +11,8 @@ export const portfolioData = {
       linkedin: "https://www.linkedin.com/in/abhishekkumar3107/",
       github: "https://github.com/Abhishekk3107",
       instagram: "https://www.instagram.com/abhi31_07"
-    }
+    },
+    email: "abhishekk3107@example.com"
   },
   skills: {
     "Languages & Concepts": ["JavaScript", "HTML", "CSS", "C language", "C++", "Data Structure and Algorithms", "Python", "MySQL", "MongoDB"],
