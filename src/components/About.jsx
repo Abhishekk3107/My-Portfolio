@@ -6,10 +6,20 @@ export default function About({ data }) {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">About Me</h2>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
             <div>
-              <p className="text-lg text-muted leading-relaxed mb-8">{data.personal.about}</p>
+              <p className="text-lg text-muted leading-relaxed mb-6">{data.personal.about}</p>
+
+              <h4 className="text-lg font-semibold mb-2 text-white">Experience</h4>
+              <ul className="mb-6 text-muted">
+                <li>• Freelance Web Developer — Built responsive websites and SPA using React and Tailwind CSS.</li>
+                <li>• Open source contributor — Small utilities and UI components on GitHub.</li>
+              </ul>
+
+              <h4 className="text-lg font-semibold mb-2 text-white">Education</h4>
+              <p className="text-muted mb-6">BCA student — focus on web development and software engineering fundamentals.</p>
             </div>
+
             <div>
               <h3 className="text-2xl font-semibold mb-6 text-accent">Skills & Technologies</h3>
               <div>
