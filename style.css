@@ -192,7 +192,7 @@ header .toggleNav {
 #headline {
   margin: 50px 0;
   padding: 0;
-  background-image: url("images/header-illsutration-mobile@2x.png");
+  background-image: url("/assets/images/header-illsutration-mobile@2x.png");
   background-position: top;
   background-size: cover;
 }
@@ -508,7 +508,7 @@ footer .contact-wrapper h3 {
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
-  background: url("images/illustration-aboutme-mobile.png");
+  background: url("/assets/images/illustration-aboutme-mobile.png");
   background-position: top;
   background-size: cover;
 }
@@ -574,7 +574,7 @@ footer .contact-wrapper h3 {
 /* ****Footer Section**** */
 
 footer {
-  background-image: url("images/backgroundfooter.png");
+  background-image: url("/assets/images/backgroundfooter.png");
   background-position: top;
   background-size: cover;
 }
@@ -748,7 +748,7 @@ footer .contact-wrapper textarea {
     margin: 0;
     display: flex;
     justify-content: center;
-    background-image: url("images/Header-llustration-desktop@2x.png");
+    background-image: url("/assets/images/Header-llustration-desktop@2x.png");
   }
 
   #headline .headline-wrapper {
@@ -900,7 +900,7 @@ footer .contact-wrapper textarea {
     width: 100%;
     min-height: 300px;
     align-items: flex-end;
-    background: url("images/illustration-about-me-desktop@2x.png");
+    background: url("/assets/images/illustration-about-me-desktop@2x.png");
     background-position: top;
     background-size: contain;
     background-repeat: no-repeat;
@@ -944,7 +944,7 @@ footer .contact-wrapper textarea {
 
   footer .footer-wrapper {
     padding-bottom: 140px;
-    background: url("images/illustration-2-contact-form-desktop@2x.png");
+    background: url("/assets/images/illustration-2-contact-form-desktop@2x.png");
     background-size: contain;
     background-position: bottom;
     background-repeat: no-repeat;

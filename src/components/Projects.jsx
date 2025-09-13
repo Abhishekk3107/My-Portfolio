@@ -33,7 +33,7 @@ export default function Projects({ data }) {
           {filtered.map((project, idx) => (
             <article key={project.title} className="project-card bg-[rgba(255,255,255,0.02)] rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:translate-y-[-6px]" style={{animationDelay: `${idx*0.05}s`}}>
               <div className="w-full h-48 bg-[rgba(255,255,255,0.02)]">
-                <img src={project.image} alt={project.title} className="w-full h-full object-cover" onError={(e)=>{e.currentTarget.src='/images/placeholder.png'}} />
+                <img src={project.image} alt={project.title} className="w-full h-full object-cover" onError={(e)=>{e.currentTarget.src='/assets/images/placeholder.png'}} />
               </div>
               <div className="p-6">
                 <h3 className="text-lg md:text-xl font-semibold mb-2 text-white">{project.title}</h3>
