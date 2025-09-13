@@ -5,10 +5,15 @@
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "buildCommand": "chmod +x node_modules/.bin/vite && npm run build",
+        "buildCommand": "chmod +x ./node_modules/.bin/vite && npm run build",
         "outputDirectory": "dist"
       }
     }
   ],
-  "framework": "vite"
+  "framework": "vite",
+  "build": {
+    "env": {
+      "VERCEL_CLI_VERSION": "latest"
+    }
+  }
 }
