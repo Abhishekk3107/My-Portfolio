@@ -89,7 +89,7 @@ header {
   background-color: #172b4d;
   top: 0;
   width: 100vw;
-  height: 58px;
+  height: auto !important;
   z-index: 9;
   display: flex;
   justify-content: space-between;

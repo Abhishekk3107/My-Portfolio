@@ -7,9 +7,7 @@ import WaveBackground from './components/WaveBackground'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
-import AboutPage from './pages/AboutPage'
-import ProjectsPage from './pages/ProjectsPage'
-import ContactPage from './pages/ContactPage'
+
 
 export default function App() {
   return (
@@ -20,11 +18,7 @@ export default function App() {
         <Header />
         <main>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-          </Routes>
+            <Route path="/" element={<Home />} />         </Routes>
         </main>
         <Footer />
       </div>

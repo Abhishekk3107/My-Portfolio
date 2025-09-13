@@ -1,3 +1,18 @@
+// Import the profile image
+import userImage from './assets/user0.jpg';
+
+// Import all project images
+import freewaystudyImage from './assets/freewaystudy.png';
+import salarifyImage from './assets/salarify.png';
+import askAiImage from './assets/ask-ai.png';
+import amazonHomepageCloneImage from './assets/amazon_homepage_clone.png';
+import ticTacToeImage from './assets/tic_tac_toe.png';
+import rockPaperScissorsImage from './assets/rock_paper_scissors.png';
+import darkModeButtonImage from './assets/dark_mode_button.png';
+import spotifyImage from './assets/spotify.png';
+import responsiveCalcImage from './assets/Calc.png';
+import treeForMeImage from './assets/Tree.jpg';
+import resumePDF from './assets/Abhishek-Kumar-Resume.pdf';
 export const portfolioData = {
   personal: {
     name: "Abhishek Kumar",
@@ -5,8 +20,8 @@ export const portfolioData = {
     location: "Ghaziabad, India",
     description: "I can help you build a website from front-end to back-end. Look through some of my work and projects! If you like what you see and have a project that needs to be coded, don't hesitate to contact me.",
     about: "Who am I? A conscientious Web Developer from Ghaziabad, India. A BCA student and tech enthusiast looking for a challenge. If you like what you see and have a project that needs to be coded in an organized, conscientious, and dynamic way, do not hesitate to contact me.",
-    resume: "/assets/images/Abhishek-Kumar-Resume.pdf",
-    image: "/assets/images/user0.jpg",
+    resume: resumePDF,
+    image: userImage,
     social: {
       linkedin: "https://www.linkedin.com/in/abhishekkumar3107/",
       github: "https://github.com/Abhishekk3107",
@@ -23,7 +38,8 @@ export const portfolioData = {
     {
       title: "Freewaystudy Project",
       description: "An online platform providing students with free access to a wide range of study materials and educational resources.",
-      image: "/assets/images/freewaystudy.png",
+      // Use the imported variable here
+      image: freewaystudyImage,
       technologies: ["HTML", "CSS", "JavaScript"],
       liveUrl: "https://www.freewaystudy.tech/",
       githubUrl: null
@@ -31,7 +47,8 @@ export const portfolioData = {
     {
       title: "Salarify Project",
       description: "A tool designed to help users calculate and understand salary breakdowns, including taxes and deductions.",
-      image: "/assets/images/salarify.png",
+      // Use the imported variable here
+      image: salarifyImage,
       technologies: ["JavaScript", "React", "CSS"],
       liveUrl: "https://salarifyio.vercel.app/",
       githubUrl: "https://github.com/Abhishekk3107/Salarify"
@@ -39,7 +56,8 @@ export const portfolioData = {
     {
       title: "Ask AI Chatbot",
       description: "A conversational chatbot powered by the Google Gemini API to answer user queries and engage in real-time conversations.",
-      image: "/assets/images/ask-ai.png",
+      // Use the imported variable here
+      image: askAiImage,
       technologies: ["JavaScript", "API", "React"],
       liveUrl: "https://ask-ai-01.netlify.app/",
       githubUrl: "https://github.com/Abhishekk3107/ask-ai-public"
@@ -47,7 +65,8 @@ export const portfolioData = {
     {
       title: "Amazon Homepage Clone",
       description: "This project is a clone of the Amazon homepage using HTML and CSS.",
-      image: "/assets/images/amazon_homepage_clone.png",
+      // Use the imported variable here
+      image: amazonHomepageCloneImage,
       technologies: ["HTML", "CSS"],
       liveUrl: "https://abhishekk3107.github.io/Amazon-Homepage-Clone/",
       githubUrl: "https://github.com/Abhishekk3107/Amazon-Homepage-Clone"
@@ -55,7 +74,8 @@ export const portfolioData = {
     {
       title: "Tic Tac Toe",
       description: "A classic Tic Tac Toe game built with HTML, CSS, and JavaScript.",
-      image: "/assets/images/tic_tac_toe.png",
+      // Use the imported variable here
+      image: ticTacToeImage,
       technologies: ["HTML", "CSS", "JavaScript"],
       liveUrl: "https://abhishekk3107.github.io/Tic-Tac-Toe-by-HTML-CSS-and-JS/",
       githubUrl: "https://github.com/Abhishekk3107/Tic-Tac-Toe-by-HTML-CSS-and-JS"
@@ -63,7 +83,8 @@ export const portfolioData = {
     {
       title: "Rock Paper Scissors",
       description: "Rock Paper Scissors game implemented using HTML, CSS, and JavaScript.",
-      image: "/assets/images/rock_paper_scissors.png",
+      // Use the imported variable here
+      image: rockPaperScissorsImage,
       technologies: ["HTML", "CSS", "JavaScript"],
       liveUrl: "https://abhishekk3107.github.io/rock-papers-scissors/",
       githubUrl: "https://github.com/Abhishekk3107/rock-papers-scissors"
@@ -71,7 +92,8 @@ export const portfolioData = {
     {
       title: "Dark Mode Button",
       description: "A simple dark mode toggle button using HTML, CSS, and JavaScript.",
-      image: "/assets/images/dark_mode_button.png",
+      // Use the imported variable here
+      image: darkModeButtonImage,
       technologies: ["HTML", "CSS", "JavaScript"],
       liveUrl: "https://abhishekk3107.github.io/Dark-mode-button/",
       githubUrl: "https://github.com/Abhishekk3107/Dark-mode-button"
@@ -79,7 +101,8 @@ export const portfolioData = {
     {
       title: "Spotify Clone",
       description: "A simple responsive clone of Spotify homepage created using HTML & CSS",
-      image: "/assets/images/spotify.png",
+      // Use the imported variable here
+      image: spotifyImage,
       technologies: ["HTML", "CSS"],
       liveUrl: "https://abhishekk3107.github.io/Spotify-Clone/",
       githubUrl: "https://github.com/Abhishekk3107/Spotify-Clone"
@@ -87,7 +110,8 @@ export const portfolioData = {
     {
       title: "Responsive Calculator",
       description: "A simple responsive calculator created using HTML, CSS and JS",
-      image: "/assets/images/Calc.png",
+      // Use the imported variable here
+      image: responsiveCalcImage,
       technologies: ["HTML", "CSS", "JavaScript"],
       liveUrl: "https://abhishekk3107.github.io/Afame_Technologies_Calculator/",
       githubUrl: "https://github.com/Abhishekk3107/Afame_Technologies_Calculator"
@@ -95,10 +119,11 @@ export const portfolioData = {
     {
       title: "Tree for Me Project",
       description: "An initiative where you can sponsor the plantation of trees - Tree 4 me",
-      image: "/assets/images/Tree.jpg",
+      // Use the imported variable here
+      image: treeForMeImage,
       technologies: ["HTML", "CSS", "JavaScript"],
       liveUrl: "https://abhishekk3107.github.io/TREE_4_ME//",
       githubUrl: "https://github.com/Abhishekk3107/TREE_4_ME"
     }
   ]
-}
+};
