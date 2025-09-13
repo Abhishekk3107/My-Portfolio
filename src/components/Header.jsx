@@ -189,9 +189,9 @@ const HamburgerIcon = ({ isOpen, onClick }) => {
       aria-label="Toggle menu" 
       className="relative w-8 h-8 flex flex-col justify-center items-center focus:outline-none group"
     >
-      <span ref={line1Ref} className="block w-6 h-0.5 bg-muted group-hover:bg-accent transition-colors duration-200 origin-center"></span>
-      <span ref={line2Ref} className="block w-6 h-0.5 bg-muted group-hover:bg-accent transition-colors duration-200 my-1"></span>
-      <span ref={line3Ref} className="block w-6 h-0.5 bg-muted group-hover:bg-accent transition-colors duration-200 origin-center"></span>
+      <span ref={line1Ref} className="block w-6 h-0.5 bg-white group-hover:bg-accent transition-colors duration-200 origin-center"></span>
+      <span ref={line2Ref} className="block w-6 h-0.5 bg-white group-hover:bg-accent transition-colors duration-200 my-1"></span>
+      <span ref={line3Ref} className="block w-6 h-0.5 bg-white group-hover:bg-accent transition-colors duration-200 origin-center"></span>
     </button>
   )
 }
