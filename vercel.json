@@ -10,10 +10,5 @@
       }
     }
   ],
-  "framework": "vite",
-  "build": {
-    "env": {
-      "VERCEL_CLI_VERSION": "latest"
-    }
-  }
+  "framework": "vite"
 }
