@@ -5,8 +5,8 @@ export const portfolioData = {
     location: "Ghaziabad, India",
     description: "I can help you build a website from front-end to back-end. Look through some of my work and projects! If you like what you see and have a project that needs to be coded, don't hesitate to contact me.",
     about: "Who am I? A conscientious Web Developer from Ghaziabad, India. A BCA student and tech enthusiast looking for a challenge. If you like what you see and have a project that needs to be coded in an organized, conscientious, and dynamic way, do not hesitate to contact me.",
-    resume: "/images/Abhishek-Kumar-Resume.pdf",
-    image: "/images/user0.jpg",
+    resume: "/assets/images/Abhishek-Kumar-Resume.pdf",
+    image: "/assets/images/user0.jpg",
     social: {
       linkedin: "https://www.linkedin.com/in/abhishekkumar3107/",
       github: "https://github.com/Abhishekk3107",
@@ -23,7 +23,7 @@ export const portfolioData = {
     {
       title: "Freewaystudy Project",
       description: "An online platform providing students with free access to a wide range of study materials and educational resources.",
-      image: "/images/freewaystudy.png",
+      image: "/assets/images/freewaystudy.png",
       technologies: ["HTML", "CSS", "JavaScript"],
       liveUrl: "https://www.freewaystudy.tech/",
       githubUrl: null
@@ -31,7 +31,7 @@ export const portfolioData = {
     {
       title: "Salarify Project",
       description: "A tool designed to help users calculate and understand salary breakdowns, including taxes and deductions.",
-      image: "/images/salarify.png",
+      image: "/assets/images/salarify.png",
       technologies: ["JavaScript", "React", "CSS"],
       liveUrl: "https://salarifyio.vercel.app/",
       githubUrl: "https://github.com/Abhishekk3107/Salarify"
@@ -39,7 +39,7 @@ export const portfolioData = {
     {
       title: "Ask AI Chatbot",
       description: "A conversational chatbot powered by the Google Gemini API to answer user queries and engage in real-time conversations.",
-      image: "/images/ask-ai.png",
+      image: "/assets/images/ask-ai.png",
       technologies: ["JavaScript", "API", "React"],
       liveUrl: "https://ask-ai-01.netlify.app/",
       githubUrl: "https://github.com/Abhishekk3107/ask-ai-public"
@@ -47,7 +47,7 @@ export const portfolioData = {
     {
       title: "Amazon Homepage Clone",
       description: "This project is a clone of the Amazon homepage using HTML and CSS.",
-      image: "/images/amazon_homepage_clone.png",
+      image: "/assets/images/amazon_homepage_clone.png",
       technologies: ["HTML", "CSS"],
       liveUrl: "https://abhishekk3107.github.io/Amazon-Homepage-Clone/",
       githubUrl: "https://github.com/Abhishekk3107/Amazon-Homepage-Clone"
@@ -55,7 +55,7 @@ export const portfolioData = {
     {
       title: "Tic Tac Toe",
       description: "A classic Tic Tac Toe game built with HTML, CSS, and JavaScript.",
-      image: "/images/tic_tac_toe.png",
+      image: "/assets/images/tic_tac_toe.png",
       technologies: ["HTML", "CSS", "JavaScript"],
       liveUrl: "https://abhishekk3107.github.io/Tic-Tac-Toe-by-HTML-CSS-and-JS/",
       githubUrl: "https://github.com/Abhishekk3107/Tic-Tac-Toe-by-HTML-CSS-and-JS"
@@ -63,7 +63,7 @@ export const portfolioData = {
     {
       title: "Rock Paper Scissors",
       description: "Rock Paper Scissors game implemented using HTML, CSS, and JavaScript.",
-      image: "/images/rock_paper_scissors.png",
+      image: "/assets/images/rock_paper_scissors.png",
       technologies: ["HTML", "CSS", "JavaScript"],
       liveUrl: "https://abhishekk3107.github.io/rock-papers-scissors/",
       githubUrl: "https://github.com/Abhishekk3107/rock-papers-scissors"
@@ -71,7 +71,7 @@ export const portfolioData = {
     {
       title: "Dark Mode Button",
       description: "A simple dark mode toggle button using HTML, CSS, and JavaScript.",
-      image: "/images/dark_mode_button.png",
+      image: "/assets/images/dark_mode_button.png",
       technologies: ["HTML", "CSS", "JavaScript"],
       liveUrl: "https://abhishekk3107.github.io/Dark-mode-button/",
       githubUrl: "https://github.com/Abhishekk3107/Dark-mode-button"
@@ -79,7 +79,7 @@ export const portfolioData = {
     {
       title: "Spotify Clone",
       description: "A simple responsive clone of Spotify homepage created using HTML & CSS",
-      image: "/images/spotify.png",
+      image: "/assets/images/spotify.png",
       technologies: ["HTML", "CSS"],
       liveUrl: "https://abhishekk3107.github.io/Spotify-Clone/",
       githubUrl: "https://github.com/Abhishekk3107/Spotify-Clone"
@@ -87,7 +87,7 @@ export const portfolioData = {
     {
       title: "Responsive Calculator",
       description: "A simple responsive calculator created using HTML, CSS and JS",
-      image: "/images/Calc.png",
+      image: "/assets/images/Calc.png",
       technologies: ["HTML", "CSS", "JavaScript"],
       liveUrl: "https://abhishekk3107.github.io/Afame_Technologies_Calculator/",
       githubUrl: "https://github.com/Abhishekk3107/Afame_Technologies_Calculator"
@@ -95,7 +95,7 @@ export const portfolioData = {
     {
       title: "Tree for Me Project",
       description: "An initiative where you can sponsor the plantation of trees - Tree 4 me",
-      image: "/images/Tree.jpg",
+      image: "/assets/images/Tree.jpg",
       technologies: ["HTML", "CSS", "JavaScript"],
       liveUrl: "https://abhishekk3107.github.io/TREE_4_ME//",
       githubUrl: "https://github.com/Abhishekk3107/TREE_4_ME"

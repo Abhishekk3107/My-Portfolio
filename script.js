@@ -74,7 +74,7 @@ function showProjectDetail(project) {
   btnLiveText.textContent = 'See Live';
   btnLive.append(btnLiveText);
   let btnIcon = document.createElement('img');
-  btnIcon.src = 'images/iconsLive.png';
+  btnIcon.src = '/assets/images/iconsLive.png';
   btnLive.append(btnIcon);
 
   const btnSourceText = document.createElement('p');
