@@ -355,13 +355,13 @@ export default function Hero({ data }) {
             className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4"
           >
             <a 
-              href="/projects" 
-              className="inline-block bg-accent text-black px-6 py-3 rounded-full font-semibold hover:bg-accent/90 transition-all duration-300 hover:shadow-lg hover:shadow-accent/25"
-              onMouseEnter={(e) => handleButtonHover(e, true)}
-              onMouseLeave={(e) => handleButtonHover(e, false)}
-            >
-              View My Work
-            </a>
+  href="#projects"
+  className="inline-block bg-accent text-black px-6 py-3 rounded-full font-semibold hover:bg-accent/90 transition-all duration-300 hover:shadow-lg hover:shadow-accent/25"
+  onMouseEnter={(e) => handleButtonHover(e, true)}
+  onMouseLeave={(e) => handleButtonHover(e, false)}
+>
+  View My Work
+</a>
             <a 
               href={data.personal.resume} 
               className="inline-block border border-[rgba(255,255,255,0.06)] text-muted px-6 py-3 rounded-full hover:border-[rgba(255,255,255,0.15)] hover:text-white transition-all duration-300 hover:bg-white/5"
