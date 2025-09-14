@@ -291,12 +291,7 @@ export default function Footer({ data }) {
             </p>
           </div>
 
-          {/* Legal Links */}
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-            <a href="/privacy" className="text-muted text-sm hover:text-accent transition-colors duration-300">Privacy</a>
-            <a href="/terms" className="text-muted text-sm hover:text-accent transition-colors duration-300">Terms</a>
-            <a href="/sitemap" className="text-muted text-sm hover:text-accent transition-colors duration-300">Sitemap</a>
-          </div>
+        
 
           {/* Back to Top - Fixed functionality */}
           <button
