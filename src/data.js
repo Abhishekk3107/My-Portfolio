@@ -18,6 +18,8 @@ import resumePDF from './assets/ABHISHEK-KUMAR-Resume1.pdf';
 import byteforgeImage from './assets/byteforge.png'; // site: byteforge.studio [web:2]
 import dentalPerfectImage from './assets/dental-perfect.png'; // site: dental-perfect.com [web:12]
 import skillswapImage from './assets/skillswap.png'; // repo/site references [web:10][web:13]
+import note from './assets/note.png';
+import idCard from './assets/icard.png';
 
 export const portfolioData = {
   personal: {
@@ -88,6 +90,21 @@ export const portfolioData = {
       githubUrl: null, // [web:2]
     },
     {
+      title: "Note Taking App",
+      description:
+        "A site for taking notes and managing tasks efficiently. Many people can save their notes and access them later.", // [web:2][web:11]
+      image: note,
+      technologies: ["React", "Tailwind CSS", "Vite"], // [web:2]
+      liveUrl: "https://notekeeper-io.vercel.app/", // [web:2]
+    },{
+      title: "ID Card Generator",
+      description:
+        "A site for generating ID cards with user information and images. User can customize them.", // [web:2][web:11]
+      image: idCard,
+      technologies: ["React", "Tailwind CSS", "Vite"], // [web:2]
+      liveUrl: "https://id-cardz-io.vercel.app/", // [web:2]
+    },
+    {
       title: "Salarify Project",
       description:
         "A tool designed to help users calculate and understand salary breakdowns, including taxes and deductions.", // [web:2]
@@ -108,7 +125,7 @@ export const portfolioData = {
     {
       title: "Amazon Homepage Clone",
       description:
-        "This project is a clone of the Amazon homepage using HTML and CSS.", // [web:2]
+        "This project is a clone of the Amazon homepage using HTML and CSS. UI inspired from amazon shopping site", // [web:2]
       image: amazonHomepageCloneImage,
       technologies: ["HTML", "CSS"], // [web:2]
       liveUrl: "https://abhishekk3107.github.io/Amazon-Homepage-Clone/", // [web:2]
