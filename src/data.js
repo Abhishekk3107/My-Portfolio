@@ -119,7 +119,7 @@ export const portfolioData = {
         "A conversational chatbot powered by the Google Gemini API to answer user queries and engage in real-time conversations.", // [web:2]
       image: askAiImage,
       technologies: ["JavaScript", "API", "React"], // [web:2]
-      liveUrl: "https://ask-ai-01.netlify.app/", // [web:2]
+      liveUrl: "https://ask-ai-pi.vercel.app/", // [web:2]
       githubUrl: "https://github.com/Abhishekk3107/ask-ai-public", // [web:2]
     },
     {
