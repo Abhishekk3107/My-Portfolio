@@ -38,7 +38,7 @@ function safeJoin(base, target) {
   const targetPath = path.posix.normalize('/' + target);
   return path.join(base, targetPath);
 }
-
+//
 const server = http.createServer((req, res) => {
   try {
     const parsedUrl = url.parse(req.url);
