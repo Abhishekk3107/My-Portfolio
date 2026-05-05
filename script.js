@@ -8,7 +8,7 @@ function highlightMenuItem(menuItemID, highlighted) {
     elem.style.textDecoration = 'none';
   }
 }
-
+//
 function showProjectDetail(project) {
   const container = document.createElement('div');
   container.id = 'project-detail-modal';
