@@ -91,8 +91,18 @@ function Home({ data }) {
     </section>
     <Ticker />
     <section className="intro section"><Reveal><p className="eyebrow">Frontend craft, full-stack thinking</p><h2>From a sharp first click to a reliable <em>last API call.</em></h2><p className="lede">At Stream Digital Services, I work across production React.js and Node.js applications — debugging real-world issues, shaping scalable features, integrating secure APIs, and improving performance. I enjoy owning the details that turn an idea into a dependable product.</p></Reveal></section>
-    <section className="work section"><Reveal><div className="section-top"><p className="eyebrow">Selected work</p><Link to="/projects">All projects ↗</Link></div></Reveal><div className="projects-grid">{data.projects.map((project, i) => <Reveal key={project.title}><ProjectCard project={project} index={i} /></Reveal>)}</div></section>
-    <AboutStrip data={data} /><Footer />
+    <section className="work section"><Reveal><div className="section-top"><p className="eyebrow">Selected work</p><Link to="/projects">All projects ↗</Link></div></Reveal><div className="projects-grid">{data.projects.slice(0, 4).map((project, i) => <Reveal key={project.title}><ProjectCard project={project} index={i} /></Reveal>)}</div></section>
+    <AboutStrip data={data} />
+    <section className="resume-section" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '6rem 7vw', gap: '2rem', borderTop: '1px solid var(--line)', background: 'var(--ink)' }}>
+      <Reveal>
+        <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
+          <p className="eyebrow">Looking for details?</p>
+          <h2 style={{ font: "600 clamp(2.5rem, 5vw, 4.5rem)/1 'Playfair Display', serif", margin: '0' }}>Get the full <em>career story.</em></h2>
+          <MagneticButton href={data.personal.resume} target="_blank" rel="noreferrer" className="round-link" style={{ margin: '1rem auto 0' }}>View Resume <i>↗</i></MagneticButton>
+        </div>
+      </Reveal>
+    </section>
+    <Footer />
   </main>
 }
 
