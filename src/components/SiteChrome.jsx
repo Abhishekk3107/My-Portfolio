@@ -15,7 +15,7 @@ export default function SiteChrome({ children }) {
   }, { dependencies: [location.pathname], revertOnUpdate: true })
   return <>
     <div className="route-curtain" aria-hidden="true" />
-    <header className="site-header">
+    <header className={`site-header ${menuOpen ? 'site-header--menu-open' : ''}`}>
       <Link to="/" className="brand" data-cursor="open" aria-label="Abhishek Kumar home"><img src={profileImage} alt="" /><b>Abhishek Kumar</b></Link>
       <nav className={menuOpen ? 'nav nav--open' : 'nav'} aria-label="Primary">
         {links.map(([to, label]) => <Link key={to} to={to} onClick={() => setMenuOpen(false)} className={location.pathname === to ? 'active' : ''}>{label}</Link>)}
