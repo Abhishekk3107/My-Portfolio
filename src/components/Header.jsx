@@ -1,348 +1,174 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import React, { useEffect, useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 
-gsap.registerPlugin(ScrollTrigger)
-
-// Enhanced Logo component with white text
-const Logo = ({ size = 40 }) => {
-  const logoRef = useRef(null)
-  
-  useEffect(() => {
-    const logo = logoRef.current
-    if (!logo) return
-
-    // Logo hover animation (subtle only)
-    const handleMouseEnter = () => {
-      gsap.to(logo, {
-        scale: 1.05,
-        duration: 0.3,
-        ease: "power2.out"
-      })
-    }
-
-    const handleMouseLeave = () => {
-      gsap.to(logo, {
-        scale: 1,
-        duration: 0.3,
-        ease: "power2.out"
-      })
-    }
-
-    logo.addEventListener('mouseenter', handleMouseEnter)
-    logo.addEventListener('mouseleave', handleMouseLeave)
-
-    return () => {
-      logo.removeEventListener('mouseenter', handleMouseEnter)
-      logo.removeEventListener('mouseleave', handleMouseLeave)
-    }
-  }, [])
-
-  return (
-    <div 
-      ref={logoRef}
-      style={{width: size, height: size}} 
-      className="flex items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--accent),var(--accent-2))] text-white font-bold cursor-pointer relative overflow-hidden group"
-    >
-      <span style={{fontSize: size/2}} className="select-none relative z-10 font-bold text-white">AK</span>
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-    </div>
-  )
-}
-
-// Enhanced NavLink with advanced hover effects
-const NavLink = ({ href, children, onClick }) => {
-  const linkRef = useRef(null)
-  const underlineRef = useRef(null)
-  
-  useEffect(() => {
-    const link = linkRef.current
-    const underline = underlineRef.current
-    if (!link || !underline) return
-
-    const handleMouseEnter = () => {
-      gsap.to(link, {
-        y: -2,
-        duration: 0.3,
-        ease: "power2.out"
-      })
-      gsap.to(underline, {
-        scaleX: 1,
-        opacity: 1,
-        duration: 0.4,
-        ease: "power2.out"
-      })
-    }
-
-    const handleMouseLeave = () => {
-      gsap.to(link, {
-        y: 0,
-        duration: 0.3,
-        ease: "power2.out"
-      })
-      gsap.to(underline, {
-        scaleX: 0,
-        opacity: 0,
-        duration: 0.3,
-        ease: "power2.out"
-      })
-    }
-
-    link.addEventListener('mouseenter', handleMouseEnter)
-    link.addEventListener('mouseleave', handleMouseLeave)
-
-    return () => {
-      link.removeEventListener('mouseenter', handleMouseEnter)
-      link.removeEventListener('mouseleave', handleMouseLeave)
-    }
-  }, [])
-
-  return (
-    <a 
-      ref={linkRef}
-      href={href} 
-      onClick={onClick}
-      className="nav-link relative text-muted hover:text-accent transition-all duration-300 font-medium px-3 py-2 rounded-lg hover:bg-white/5"
-    >
-      {children}
-      <div 
-        ref={underlineRef}
-        className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-accent to-accent/60 transform scale-x-0 origin-left"
-        style={{ opacity: 0 }}
-      ></div>
-    </a>
-  )
-}
-
-// Enhanced Mobile NavLink
-const MobileNavLink = ({ href, children, closeMenu }) => {
-  const mobileRef = useRef(null)
-  
-  useEffect(() => {
-    const link = mobileRef.current
-    if (!link) return
-
-    const handleMouseEnter = () => {
-      gsap.to(link, {
-        x: 10,
-        backgroundColor: "rgba(255, 255, 255, 0.05)",
-        duration: 0.3,
-        ease: "power2.out"
-      })
-    }
-
-    const handleMouseLeave = () => {
-      gsap.to(link, {
-        x: 0,
-        backgroundColor: "transparent",
-        duration: 0.3,
-        ease: "power2.out"
-      })
-    }
-
-    link.addEventListener('mouseenter', handleMouseEnter)
-    link.addEventListener('mouseleave', handleMouseLeave)
-
-    return () => {
-      link.removeEventListener('mouseenter', handleMouseEnter)
-      link.removeEventListener('mouseleave', handleMouseLeave)
-    }
-  }, [])
-
-  return (
-    <a 
-      ref={mobileRef}
-      href={href} 
-      onClick={closeMenu}
-      className="text-white block py-3 px-4 text-lg rounded-lg transition-all duration-300 border-l-2 border-transparent hover:border-accent"
-    >
-      {children}
-    </a>
-  )
-}
-
-// Hamburger Menu Icon Component
-const HamburgerIcon = ({ isOpen, onClick }) => {
-  const line1Ref = useRef(null)
-  const line2Ref = useRef(null)
-  const line3Ref = useRef(null)
-
-  useEffect(() => {
-    const line1 = line1Ref.current
-    const line2 = line2Ref.current
-    const line3 = line3Ref.current
-
-    if (isOpen) {
-      gsap.to(line1, { rotation: 45, y: 6, duration: 0.3 })
-      gsap.to(line2, { opacity: 0, duration: 0.2 })
-      gsap.to(line3, { rotation: -45, y: -6, duration: 0.3 })
-    } else {
-      gsap.to(line1, { rotation: 0, y: 0, duration: 0.3 })
-      gsap.to(line2, { opacity: 1, duration: 0.2 })
-      gsap.to(line3, { rotation: 0, y: 0, duration: 0.3 })
-    }
-  }, [isOpen])
-
-  return (
-    <button 
-      onClick={onClick} 
-      aria-label="Toggle menu" 
-      className="relative w-8 h-8 flex flex-col justify-center items-center focus:outline-none group"
-    >
-      <span ref={line1Ref} className="block w-6 h-0.5 bg-white group-hover:bg-accent transition-colors duration-200 origin-center"></span>
-      <span ref={line2Ref} className="block w-6 h-0.5 bg-white group-hover:bg-accent transition-colors duration-200 my-1"></span>
-      <span ref={line3Ref} className="block w-6 h-0.5 bg-white group-hover:bg-accent transition-colors duration-200 origin-center"></span>
-    </button>
-  )
-}
+const links = [
+  { href: '#hero', label: 'Home' },
+  { href: '#about', label: 'About' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#education', label: 'Education' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#credentials', label: 'Credentials' },
+  { href: '#contact', label: 'Contact' },
+]
 
 export default function Header() {
-  const [open, setOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const headerRef = useRef(null)
-  const mobileMenuRef = useRef(null)
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
-    // Initial navbar animation
-    gsap.fromTo(headerRef.current,
-      { y: -100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, delay: 0.5, ease: "power2.out" }
-    )
+    const onScroll = () => {
+      const scrollTop = window.scrollY
+      const total = document.documentElement.scrollHeight - window.innerHeight
+      setScrolled(scrollTop > 32)
+      setScrollProgress(total > 0 ? scrollTop / total : 0)
+    }
 
-    // Scroll-based navbar background changes only
-    ScrollTrigger.create({
-      start: "top -10",
-      end: 99999,
-      onUpdate: (self) => {
-        const isScrolled = self.scroll() > 50
-        setScrolled(isScrolled)
-        
-        if (isScrolled) {
-          gsap.to(headerRef.current, {
-            backgroundColor: "rgba(10, 12, 20, 0.9)",
-            backdropFilter: "blur(20px)",
-            borderColor: "rgba(255, 255, 255, 0.08)",
-            duration: 0.3,
-            ease: "power2.out"
-          })
-        } else {
-          gsap.to(headerRef.current, {
-            backgroundColor: "rgba(10, 12, 20, 0.7)",
-            backdropFilter: "blur(16px)",
-            borderColor: "rgba(255, 255, 255, 0.04)",
-            duration: 0.3,
-            ease: "power2.out"
-          })
-        }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    if (!menuOpen) return undefined
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false)
       }
-    })
-
-    // Mobile menu animation
-    if (open) {
-      gsap.fromTo(mobileMenuRef.current,
-        { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
-      )
-      gsap.fromTo(mobileMenuRef.current.children[0].children,
-        { x: -50, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.4, stagger: 0.1, delay: 0.2, ease: "power2.out" }
-      )
     }
 
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-    }
-  }, [open])
-
-  const closeMenu = () => {
-    gsap.to(mobileMenuRef.current.children[0].children,
-      { x: -20, opacity: 0, duration: 0.2, stagger: 0.05 }
-    )
-    gsap.to(mobileMenuRef.current,
-      { opacity: 0, y: -10, duration: 0.3, delay: 0.1, ease: "power2.in" }
-    )
-    setTimeout(() => setOpen(false), 300)
-  }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [menuOpen])
 
   return (
     <>
-      {/* Fixed Floating Curved Navbar - Properly curved from both sides */}
-      <header 
-        ref={headerRef}
-        id="navbar" 
-        className="fixed top-4 left-4 right-4 z-50 transition-all duration-300 rounded-full border"
-        style={{
-          backgroundColor: "rgba(10, 12, 20, 0.7)",
-          backdropFilter: "blur(16px)",
-          borderColor: "rgba(255, 255, 255, 0.04)",
-          borderRadius: "50px" // Full curve from both sides
-        }}
-      >
-        <div className="container mx-auto px-8 flex items-center justify-between h-20">
-          {/* Logo & Brand */}
-          <a href="#hero" className="flex items-center h-full group">
-            <Logo size={44} />
-            <div className="ml-3 overflow-hidden">
-              <span className="text-white font-semibold text-lg group-hover:text-accent transition-colors duration-300">
-                Abhi Dev
-              </span>
-              <div className="h-0.5 w-0 bg-gradient-to-r from-accent to-accent/60 group-hover:w-full transition-all duration-500"></div>
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
+
+      <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-6">
+        <motion.div
+          initial={prefersReducedMotion ? false : { y: -24, opacity: 0 }}
+          animate={prefersReducedMotion ? undefined : { y: 0, opacity: 1 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className={`mx-auto max-w-7xl rounded-full border px-4 py-3 md:px-6 ${
+            scrolled
+              ? 'border-[var(--line-strong)] bg-[rgba(7,10,16,0.84)] shadow-[0_16px_48px_rgba(0,0,0,0.28)] backdrop-blur-xl'
+              : 'border-[var(--line-soft)] bg-[rgba(8,10,16,0.55)] backdrop-blur-lg'
+          }`}
+        >
+          <div className="flex items-center justify-between gap-4">
+            <a href="#hero" className="flex min-w-0 items-center gap-3">
+              <div className="luxury-ring flex h-12 w-12 items-center justify-center rounded-full bg-[linear-gradient(135deg,rgba(227,181,92,0.28),rgba(134,167,255,0.18))] text-sm font-semibold tracking-[0.24em] text-[var(--accent)]">
+                AK
+              </div>
+              <div className="min-w-0">
+                <p className="truncate text-sm font-semibold uppercase tracking-[0.28em] text-white">
+                  Abhishek Kumar
+                </p>
+                <p className="truncate text-xs text-[var(--text-muted)]">
+                  Full Stack Developer (MERN / Next.js / TypeScript)
+                </p>
+              </div>
+            </a>
+
+            <nav aria-label="Primary" className="hidden items-center gap-1 xl:flex">
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="rounded-full px-4 py-2 text-sm text-[var(--text-secondary)] transition duration-300 hover:bg-white/5 hover:text-white focus-visible:bg-white/5"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+
+            <div className="flex items-center gap-3">
+              <a
+                href="#contact"
+                className="hidden rounded-full border border-[var(--line-soft)] bg-white/5 px-5 py-2 text-sm font-medium text-white transition duration-300 hover:border-[var(--line-strong)] hover:bg-white/10 md:inline-flex"
+              >
+                Contact
+              </a>
+              <button
+                type="button"
+                aria-expanded={menuOpen}
+                aria-controls="mobile-navigation"
+                aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--line-soft)] bg-white/5 text-white xl:hidden"
+                onClick={() => setMenuOpen((open) => !open)}
+              >
+                <span className="relative block h-4 w-5">
+                  <span
+                    className={`absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition ${
+                      menuOpen ? 'translate-y-[7px] rotate-45' : ''
+                    }`}
+                  />
+                  <span
+                    className={`absolute left-0 top-[7px] h-0.5 w-5 rounded-full bg-current transition ${
+                      menuOpen ? 'opacity-0' : 'opacity-100'
+                    }`}
+                  />
+                  <span
+                    className={`absolute left-0 top-[14px] h-0.5 w-5 rounded-full bg-current transition ${
+                      menuOpen ? '-translate-y-[7px] -rotate-45' : ''
+                    }`}
+                  />
+                </span>
+              </button>
             </div>
-          </a>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center h-full space-x-2">
-            <NavLink href="#hero">Home</NavLink>
-            <NavLink href="#about">About</NavLink>
-            <NavLink href="#projects">Projects</NavLink>
-            <NavLink href="#contact">Contact</NavLink>
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center h-full">
-            <HamburgerIcon isOpen={open} onClick={() => setOpen(!open)} />
           </div>
-        </div>
+
+          <div className="mt-3 h-px overflow-hidden rounded-full bg-white/5">
+            <div
+              aria-hidden="true"
+              className="h-full rounded-full bg-[linear-gradient(90deg,var(--accent),var(--accent-cool))] transition-[width] duration-200"
+              style={{ width: `${Math.max(scrollProgress * 100, 6)}%` }}
+            />
+          </div>
+        </motion.div>
       </header>
 
-      {/* Mobile Menu - Also with proper curves */}
-      {open && (
-        <div 
-          ref={mobileMenuRef}
-          className="fixed top-28 left-4 right-4 md:hidden z-40 border"
-          style={{
-            backgroundColor: "rgba(5, 6, 10, 0.95)",
-            backdropFilter: "blur(20px)",
-            borderColor: "rgba(255, 255, 255, 0.08)",
-            borderRadius: "24px" // Curved from both sides
-          }}
-        >
-          <div className="px-8 py-6 flex flex-col space-y-2">
-            <MobileNavLink href="#hero" closeMenu={closeMenu}>Home</MobileNavLink>
-            <MobileNavLink href="#about" closeMenu={closeMenu}>About</MobileNavLink>
-            <MobileNavLink href="#projects" closeMenu={closeMenu}>Projects</MobileNavLink>
-            <MobileNavLink href="#contact" closeMenu={closeMenu}>Contact</MobileNavLink>
-          </div>
-          
-          {/* Mobile menu decorative elements - curved properly */}
-          <div 
-            className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"
-            style={{ borderRadius: "24px 24px 0 0" }}
-          ></div>
-          <div 
-            className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent"
-            style={{ borderRadius: "0 0 24px 24px" }}
-          ></div>
-        </div>
-      )}
-
-      {/* Background overlay when mobile menu is open */}
-      {open && (
-        <div 
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 md:hidden"
-          onClick={closeMenu}
-        ></div>
-      )}
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm xl:hidden"
+              onClick={() => setMenuOpen(false)}
+            />
+            <motion.nav
+              id="mobile-navigation"
+              aria-label="Mobile"
+              initial={prefersReducedMotion ? false : { opacity: 0, y: -20 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              exit={prefersReducedMotion ? undefined : { opacity: 0, y: -20 }}
+              transition={{ duration: 0.35 }}
+              className="fixed left-4 right-4 top-24 z-50 rounded-[28px] border border-[var(--line-strong)] bg-[rgba(7,10,16,0.94)] p-4 shadow-[0_24px_72px_rgba(0,0,0,0.45)] backdrop-blur-xl xl:hidden"
+            >
+              <div className="space-y-1">
+                {links.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="block rounded-2xl px-4 py-3 text-base text-[var(--text-secondary)] transition duration-300 hover:bg-white/5 hover:text-white"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </motion.nav>
+          </>
+        )}
+      </AnimatePresence>
     </>
   )
 }
