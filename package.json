@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",
+    "@gsap/react": "^2.1.2",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
     "autoprefixer": "^10.5.2",
     "framer-motion": "^10.12.16",
     "gsap": "^3.13.0",
@@ -18,7 +21,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.1",
-    "tailwindcss": "^4.3.2"
+    "tailwindcss": "^4.3.2",
+    "three": "^0.185.1"
   },
   "devDependencies": {
     "vite": "^5.0.0"

@@ -1,73 +1,68 @@
 import React, { useEffect, useState } from 'react'
+import { BrowserRouter, useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
-import { AnimatePresence, motion } from 'framer-motion'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import AnimatedCursor from './components/AnimatedCursor'
 import SceneLoader from './components/SceneLoader'
+import SiteChrome from './components/SiteChrome'
+import { AppRoutes } from './pages/PortfolioPages'
 import { portfolioData } from './data'
-import Home from './pages/Home'
 
-export default function App() {
-  const [isLoading, setIsLoading] = useState(true)
+gsap.registerPlugin(ScrollTrigger)
+ScrollTrigger.config({ ignoreMobileResize: true, limitCallbacks: true })
 
+function SmoothScroll({ children }) {
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-    if (prefersReducedMotion) return undefined
-
-    const lenis = new Lenis({
-      duration: 1.15,
-      lerp: 0.085,
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.05,
-    })
-
-    let frameId = 0
-
-    const raf = (time) => {
-      lenis.raf(time)
-      frameId = window.requestAnimationFrame(raf)
-    }
-
-    frameId = window.requestAnimationFrame(raf)
-
+    const lenis = new Lenis({ lerp: 0.09, smoothWheel: true, wheelMultiplier: 0.85 })
+    lenis.on('scroll', ScrollTrigger.update)
+    const update = (time) => lenis.raf(time * 1000)
+    gsap.ticker.add(update)
+    gsap.ticker.lagSmoothing(0)
+    const resize = () => lenis.resize()
+    ScrollTrigger.addEventListener('refresh', resize)
+    ScrollTrigger.refresh()
     return () => {
-      window.cancelAnimationFrame(frameId)
+      ScrollTrigger.removeEventListener('refresh', resize)
+      gsap.ticker.remove(update)
       lenis.destroy()
     }
   }, [])
+  return children
+}
+
+function PortfolioApp() {
+  const [loading, setLoading] = useState(true)
+  const location = useLocation()
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setIsLoading(false), 2200)
-    return () => window.clearTimeout(timer)
-  }, [])
+    window.scrollTo(0, 0)
+    const refresh = () => ScrollTrigger.refresh()
+    const frame = requestAnimationFrame(refresh)
+    const timeout = window.setTimeout(refresh, 300)
+    const images = [...document.images]
+    images.forEach((image) => image.addEventListener('load', refresh, { once: true }))
+    window.addEventListener('load', refresh, { once: true })
+    document.fonts?.ready.then(refresh)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.clearTimeout(timeout)
+      images.forEach((image) => image.removeEventListener('load', refresh))
+      window.removeEventListener('load', refresh)
+    }
+  }, [location.pathname, loading])
 
   return (
     <div className="app-shell">
-      <div className="app-background" aria-hidden="true">
-        <div className="app-gradient app-gradient--gold" />
-        <div className="app-gradient app-gradient--blue" />
-        <div className="app-grid" />
-        <div className="app-noise" />
-      </div>
-
+      {loading && <SceneLoader onComplete={() => setLoading(false)} />}
       <AnimatedCursor />
-
-      <AnimatePresence mode="wait">
-        {isLoading ? (
-          <SceneLoader key="loader" />
-        ) : (
-          <motion.main
-            key="experience"
-            initial={{ opacity: 0, y: 60, filter: 'blur(12px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Home data={portfolioData} />
-          </motion.main>
-        )}
-      </AnimatePresence>
+      <SiteChrome>
+        <AppRoutes data={portfolioData} />
+      </SiteChrome>
     </div>
   )
+}
+
+export default function App() {
+  return <BrowserRouter><SmoothScroll><PortfolioApp /></SmoothScroll></BrowserRouter>
 }

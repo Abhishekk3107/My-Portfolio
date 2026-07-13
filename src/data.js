@@ -3,6 +3,18 @@ import userImage from './assets/Abhi.jpeg'
 import freewaystudyImage from './assets/freewaystudy.png'
 import askAiImage from './assets/ask-ai.png'
 import skillswapImage from './assets/skillswap.png'
+import amazonImage from './assets/amazon_homepage_clone.png'
+import byteforgeImage from './assets/byteforge.png'
+import calculatorImage from './assets/Calc.png'
+import darkModeImage from './assets/dark_mode_button.png'
+import dentalPerfectImage from './assets/dental-perfect.png'
+import iCardImage from './assets/icard.png'
+import notesImage from './assets/note.png'
+import rockPaperScissorsImage from './assets/rock_paper_scissors.png'
+import salarifyImage from './assets/salarify.png'
+import spotifyImage from './assets/spotify.png'
+import ticTacToeImage from './assets/tic_tac_toe.png'
+import treeImage from './assets/Tree.jpg'
 import resumePDF from './assets/Abhishek-Kumar-10th-July.pdf'
 
 export const portfolioData = {
@@ -82,7 +94,7 @@ export const portfolioData = {
       category: 'Ed-Tech Platform',
       stack: ['MERN Stack', 'JWT Auth', 'Role-Based Access'],
       image: freewaystudyImage,
-      liveUrl: 'https://www.freewaystudy.tech/',
+      liveUrl: 'https://www.freewaystudy.in/',
       githubUrl: '',
       summary:
         'Architected and deployed FreewayStudy.tech as a full-stack ed-tech platform with responsive design across all device breakpoints.',
@@ -105,7 +117,7 @@ export const portfolioData = {
       category: 'AI-Powered Chat Interface',
       stack: ['React', 'JavaScript', 'Groq API', 'Google Gemini API'],
       image: askAiImage,
-      liveUrl: 'https://ask-ai-pi.vercel.app/',
+      liveUrl: 'https://www.askaibot.in/',
       githubUrl: 'https://github.com/Abhishekk3107/ask-ai-public',
       summary:
         'Built an AI-powered conversational chatbot with REST API integration, optimized asynchronous state management, and real-time streaming responses.',
@@ -138,6 +150,54 @@ export const portfolioData = {
         'Responsive mobile and desktop UX',
       ],
       impact: ['Implemented responsive design for seamless mobile and desktop user experience'],
+    },
+    {
+      title: 'Amazon Homepage Clone', category: 'Frontend Clone', stack: ['HTML', 'CSS', 'JavaScript'], image: amazonImage,
+      summary: 'A responsive recreation of the Amazon home-page experience.', problem: 'Recreate a dense e-commerce landing page with clear hierarchy and responsive behavior.', features: ['Responsive storefront layout', 'Navigation and promotional sections', 'Reusable product presentation patterns'], impact: ['Strengthened responsive layout and component styling skills'],
+    },
+    {
+      title: 'ByteForge', category: 'Web Application', stack: ['React', 'JavaScript', 'CSS'], image: byteforgeImage,
+      summary: 'A frontend project focused on a polished, product-style interface.', problem: 'Create a clear digital product experience with an engaging visual hierarchy.', features: ['Responsive interface', 'Structured content sections', 'Modern UI styling'], impact: ['Expanded hands-on frontend product development experience'],
+    },
+    {
+      title: 'Calculator', category: 'Utility App', stack: ['HTML', 'CSS', 'JavaScript'], image: calculatorImage,
+      summary: 'A browser-based calculator for everyday arithmetic.', problem: 'Deliver reliable calculator interactions in a compact interface.', features: ['Arithmetic operations', 'Clear and reset controls', 'Responsive layout'], impact: ['Practiced state handling and event-driven JavaScript'],
+    },
+    {
+      title: 'Dark Mode Toggle', category: 'UI Component', stack: ['HTML', 'CSS', 'JavaScript'], image: darkModeImage,
+      summary: 'A theme-switching interface component with a light and dark presentation.', problem: 'Make theme preference easy to control without sacrificing visual clarity.', features: ['Light and dark themes', 'Accessible toggle interaction', 'Smooth visual transition'], impact: ['Explored UI state and theme styling patterns'],
+    },
+    {
+      title: 'Dental Perfect', category: 'Business Website', stack: ['HTML', 'CSS', 'JavaScript'], image: dentalPerfectImage,
+      summary: 'A polished website concept for a dental services business.', problem: 'Present service information and calls to action clearly for prospective patients.', features: ['Service-led layout', 'Responsive design', 'Clear contact prompts'], impact: ['Practiced conversion-focused page structure'],
+    },
+    {
+      title: 'iCard', category: 'Profile UI', stack: ['HTML', 'CSS', 'JavaScript'], image: iCardImage,
+      summary: 'A compact digital profile-card interface.', problem: 'Turn key personal information into a concise, visually engaging card.', features: ['Profile layout', 'Visual identity elements', 'Responsive card design'], impact: ['Improved UI composition and CSS layout skills'],
+    },
+    {
+      title: 'Notes App', category: 'Productivity App', stack: ['HTML', 'CSS', 'JavaScript'], image: notesImage,
+      summary: 'A lightweight note-taking interface for organising written content.', problem: 'Keep note creation and reading simple and distraction-free.', features: ['Note-focused interface', 'Clean content hierarchy', 'Responsive design'], impact: ['Practiced CRUD-oriented UI design'],
+    },
+    {
+      title: 'Rock Paper Scissors', category: 'Browser Game', stack: ['HTML', 'CSS', 'JavaScript'], image: rockPaperScissorsImage,
+      summary: 'An interactive browser implementation of the classic hand game.', problem: 'Create an immediate, clear game loop with understandable feedback.', features: ['Player choices', 'Game outcome logic', 'Interactive feedback'], impact: ['Practiced conditional logic and user interaction flows'],
+    },
+    {
+      title: 'Salarify', category: 'Finance UI', stack: ['HTML', 'CSS', 'JavaScript'], image: salarifyImage,
+      summary: 'A finance-focused interface concept with a clean dashboard presentation.', problem: 'Make financial information easier to scan and understand.', features: ['Dashboard-style layout', 'Responsive interface', 'Focused information hierarchy'], impact: ['Developed dashboard UI and data-presentation skills'],
+    },
+    {
+      title: 'Spotify Clone', category: 'Music UI Clone', stack: ['HTML', 'CSS', 'JavaScript'], image: spotifyImage,
+      summary: 'A music-streaming interface inspired by familiar playlist browsing patterns.', problem: 'Recreate a content-dense music interface while retaining intuitive navigation.', features: ['Playlist presentation', 'Music-focused layout', 'Responsive styling'], impact: ['Practiced interface replication and visual consistency'],
+    },
+    {
+      title: 'Tic Tac Toe', category: 'Browser Game', stack: ['HTML', 'CSS', 'JavaScript'], image: ticTacToeImage,
+      summary: 'A two-player Tic Tac Toe game for the browser.', problem: 'Implement turn management and win detection in a simple game UI.', features: ['Two-player turn flow', 'Win detection', 'Reset interaction'], impact: ['Strengthened JavaScript game-state logic'],
+    },
+    {
+      title: 'Tree Landing Page', category: 'Frontend Concept', stack: ['HTML', 'CSS', 'JavaScript'], image: treeImage,
+      summary: 'A visual landing-page concept built around an organic, image-led composition.', problem: 'Create an expressive, responsive page with strong visual focus.', features: ['Image-led composition', 'Responsive layout', 'Custom visual styling'], impact: ['Explored art direction through frontend implementation'],
     },
   ],
   skills: [
