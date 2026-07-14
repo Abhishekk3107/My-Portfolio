@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Flip } from 'gsap/Flip'
 import { useGSAP } from '@gsap/react'
 import MagneticButton from '../components/MagneticButton'
+import SoftAurora from '../components/SoftAurora'
 
 const HeroCanvas = lazy(() => import('../components/HeroCanvas'))
 gsap.registerPlugin(ScrollTrigger, Flip)
@@ -80,14 +81,20 @@ function ProjectCard({ project, index }) {
 function Home({ data }) {
   const root = useRef(null)
   useGSAP(() => {
-    gsap.from('.hero-reveal', { yPercent: 120, stagger: 0.08, duration: 1.15, ease: 'power4.out', delay: 0.1 })
+    gsap.from('.hero-reveal', { yPercent: 120, stagger: 0.02, duration: 0.45, ease: 'power4.out', delay: 0.02 })
     gsap.to('.hero-orb', { y: -80, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } })
   }, { scope: root })
   return <main ref={root}>
     <section className="hero"><Suspense fallback={null}><HeroCanvas /></Suspense><div className="hero-orb" />
       <p className="hero-kicker hero-reveal">Full-stack developer / India</p>
       <h1><span className="hero-reveal">Products built</span><span className="hero-reveal hero-title--accent">end to end.</span></h1>
-      <div className="hero-bottom hero-reveal"><p>I’m Abhishek — a full-stack developer building fast, thoughtful web products with React, Next.js, Node.js, REST APIs, and data-driven backends.</p><img className="hero-portrait" src={data.personal.image} alt="Abhishek Kumar" /><MagneticButton as={Link} to="/projects" className="round-link">See selected work <i>↘</i></MagneticButton></div>
+      <div className="hero-bottom hero-reveal">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'flex-start' }}>
+          <p>I’m Abhishek — a full-stack developer building fast, thoughtful web products with React, Next.js, Node.js, REST APIs, and data-driven backends.</p>
+          <MagneticButton as={Link} to="/projects" className="round-link">See selected work <i>↘</i></MagneticButton>
+        </div>
+        <img className="hero-portrait" src={data.personal.image} alt="Abhishek Kumar" />
+      </div>
     </section>
     <Ticker />
     <section className="intro section"><Reveal><p className="eyebrow">Frontend craft, full-stack thinking</p><h2>From a sharp first click to a reliable <em>last API call.</em></h2><p className="lede">At Stream Digital Services, I work across production React.js and Node.js applications — debugging real-world issues, shaping scalable features, integrating secure APIs, and improving performance. I enjoy owning the details that turn an idea into a dependable product.</p></Reveal></section>
@@ -116,7 +123,21 @@ function AboutStrip({ data }) {
   return <section className="about-strip" ref={ref}><div><p className="eyebrow">How I work</p><h2>Built with care,<br /><em>backed by code.</em></h2></div><div className="pin-steps"><article className="pin-step"><b>01</b><p>Responsive interfaces that feel clear on every screen</p></article><article className="pin-step"><b>02</b><p>Reliable Node.js services and secure REST API integrations</p></article><article className="pin-step"><b>03</b><p>{data.personal.location} / open to meaningful product work</p></article></div></section>
 }
 
-function Projects({ data }) { return <PageMotion className="page"><header className="page-hero" data-page-reveal><p className="eyebrow">A small selection</p><h1>Work that earns<br /><em>a second look.</em></h1></header><section className="projects-list">{data.projects.map((p, i) => <Reveal key={p.title}><ProjectCard project={p} index={i} /></Reveal>)}</section><Footer /></PageMotion> }
+function Projects({ data }) {
+  return <PageMotion className="page">
+    <header className="page-hero" data-page-reveal>
+      <SoftAurora speed={0.4} color1="#d2ff53" color2="#477c62" brightness={1.2} />
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <p className="eyebrow">A small selection</p>
+        <h1>Work that earns<br /><em>a second look.</em></h1>
+      </div>
+    </header>
+    <section className="projects-list">
+      {data.projects.map((p, i) => <Reveal key={p.title}><ProjectCard project={p} index={i} /></Reveal>)}
+    </section>
+    <Footer />
+  </PageMotion>
+}
 
 function ProjectDetail({ data }) {
   const { slug } = useParams(); const project = data.projects.find((p) => slugify(p.title) === slug)
@@ -124,12 +145,79 @@ function ProjectDetail({ data }) {
   return <PageMotion className="detail"><Link to="/projects" className="back" data-page-reveal>← All projects</Link><header data-page-reveal><p className="eyebrow">{project.category}</p><h1>{project.title}</h1><p>{project.summary}</p></header><img className="detail-image" src={project.image} alt={`${project.title} preview`} data-page-reveal /><section className="case-grid" data-scroll-reveal><div><p className="eyebrow">The brief</p><h2>{project.problem}</h2></div><div><p className="eyebrow">Built with</p><ul>{project.stack.map((item) => <li key={item}>{item}</li>)}</ul></div><div><p className="eyebrow">What shipped</p><ul>{project.features.map((item) => <li key={item}>{item}</li>)}</ul></div></section>{project.liveUrl && <MagneticButton href={project.liveUrl} target="_blank" className="visit" data-scroll-reveal>Visit live project ↗</MagneticButton>}<Footer /></PageMotion>
 }
 
-function About({ data }) { return <PageMotion className="page about-page"><header className="page-hero" data-page-reveal><p className="eyebrow">The human behind the UI</p><h1>Curious by<br /><em>default.</em></h1></header><section className="timeline">{data.experience.map((job, i) => <Reveal key={job.company}><article><span>0{i + 1}</span><div><p className="eyebrow">{job.overallPeriod} / {job.location}</p><h2>{job.company}</h2>{job.roles.map((role) => <div className="role" key={role.title}><h3>{role.title}</h3><p>{role.points[0]}</p></div>)}</div></article></Reveal>)}</section><section className="skills section" data-scroll-reveal><p className="eyebrow">Tools I reach for</p><div>{data.skills.map((group) => <article key={group.category}><h3>{group.category}</h3><p>{group.items.join(' · ')}</p></article>)}</div></section><Footer /></PageMotion> }
+function About({ data }) {
+  return <PageMotion className="page about-page">
+    <header className="page-hero" data-page-reveal>
+      <SoftAurora speed={0.4} color1="#d2ff53" color2="#477c62" brightness={1.2} />
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <p className="eyebrow">The human behind the UI</p>
+        <h1>Curious by<br /><em>default.</em></h1>
+      </div>
+    </header>
+    <section className="timeline">
+      {data.experience.map((job, i) => (
+        <Reveal key={job.company}>
+          <article>
+            <span>0{i + 1}</span>
+            <div>
+              <p className="eyebrow">{job.overallPeriod} / {job.location}</p>
+              <h2>{job.company}</h2>
+              {job.roles.map((role) => (
+                <div className="role" key={role.title}>
+                  <h3>{role.title}</h3>
+                  <p>{role.points[0]}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+        </Reveal>
+      ))}
+    </section>
+    <section className="skills section" data-scroll-reveal>
+      <p className="eyebrow">Tools I reach for</p>
+      <div>
+        {data.skills.map((group) => (
+          <article key={group.category}>
+            <h3>{group.category}</h3>
+            <p>{group.items.join(' · ')}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+    <Footer />
+  </PageMotion>
+}
 
 function Contact({ data }) {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const submit = (event) => { event.preventDefault(); const subject = encodeURIComponent(`Portfolio enquiry from ${form.name}`); const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`); window.location.href = `mailto:${data.personal.email}?subject=${subject}&body=${body}` }
-  return <PageMotion className="contact-page"><p className="eyebrow" data-page-reveal>Let’s make something useful</p><h1 data-page-reveal>Let's build<br /><em>something.</em></h1><p className="contact-copy" data-page-reveal>Whether you need a responsive product interface, a reliable full-stack feature, or a developer who cares about both, I’d be glad to hear from you.</p><MagneticButton href={`mailto:${data.personal.email}`} className="contact-mail" data-page-reveal>{data.personal.email} <i>↗</i></MagneticButton><form className="contact-form" onSubmit={submit} data-page-reveal><label>Name<input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name" /></label><label>Email<input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@company.com" /></label><label>How can I help?<textarea required rows="4" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Tell me about the project or opportunity." /></label><MagneticButton as="button" type="submit" className="send-button">Start an email ↗</MagneticButton></form><div className="socials" data-page-reveal><a href={data.personal.social.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={data.personal.social.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a></div><Footer /></PageMotion>
+  return <PageMotion className="contact-page">
+    <SoftAurora speed={0.4} color1="#d2ff53" color2="#477c62" brightness={1.2} />
+    <div style={{ position: 'relative', zIndex: 1 }}>
+      <p className="eyebrow" data-page-reveal>Let’s make something useful</p>
+      <h1 data-page-reveal>Let's build<br /><em>something.</em></h1>
+      <p className="contact-copy" data-page-reveal>Whether you need a responsive product interface, a reliable full-stack feature, or a developer who cares about both, I’d be glad to hear from you.</p>
+      <MagneticButton href={`mailto:${data.personal.email}`} className="contact-mail" data-page-reveal>{data.personal.email} <i>↗</i></MagneticButton>
+      <form className="contact-form" onSubmit={submit} data-page-reveal>
+        <label>Name<input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name" /></label>
+        <label>Email<input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@company.com" /></label>
+        <label>How can I help?<textarea required rows="4" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Tell me about the project or opportunity." /></label>
+        <MagneticButton as="button" type="submit" className="send-button">Start an email ↗</MagneticButton>
+      </form>
+      <div style={{ marginTop: '4rem' }} data-page-reveal>
+        <p className="eyebrow" style={{ marginBottom: '1.5rem' }}>Or connect directly</p>
+        <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+          <MagneticButton href={data.personal.social.linkedin} target="_blank" rel="noreferrer" className="round-link" style={{ background: 'var(--acid)', color: 'var(--ink)', width: 'auto', padding: '0 2.5rem', height: '4rem' }}>
+            Connect on LinkedIn <i>↗</i>
+          </MagneticButton>
+          <MagneticButton href={data.personal.social.github} target="_blank" rel="noreferrer" className="round-link" style={{ background: 'rgba(255, 255, 255, 0.05)', color: 'var(--paper)', border: '1px solid var(--line)', width: 'auto', padding: '0 2.5rem', height: '4rem' }}>
+            Follow on GitHub <i>↗</i>
+          </MagneticButton>
+        </div>
+      </div>
+    </div>
+    <Footer />
+  </PageMotion>
 }
 
 function Footer() { return <footer><p>© 2026 Abhishek Kumar</p><p>Full-Stack Developer / India</p></footer> }

@@ -4,9 +4,35 @@ import { Points, PointMaterial } from '@react-three/drei'
 
 function Particles() {
   const points = useRef()
-  const positions = useMemo(() => Float32Array.from({ length: 900 }, () => (Math.random() - 0.5) * 12), [])
-  useFrame((state) => { if (points.current) { points.current.rotation.y = state.clock.elapsedTime * 0.035; points.current.rotation.x = state.pointer.y * 0.08 } })
-  return <Points ref={points} positions={positions} stride={3} frustumCulled><PointMaterial transparent color="#b7d7ff" size={0.025} sizeAttenuation depthWrite={false} opacity={0.8} /></Points>
+  const positions = useMemo(() => Float32Array.from({ length: 1200 }, () => (Math.random() - 0.5) * 12), [])
+  
+  useFrame((state) => {
+    if (points.current) {
+      // Slow background rotation base
+      const baseRotationY = state.clock.elapsedTime * 0.04
+      
+      // Target rotation based on mouse pointer position
+      const targetX = state.pointer.y * 0.4
+      const targetY = baseRotationY + state.pointer.x * 0.4
+      
+      // Smooth lerp (0.08 interpolation factor)
+      points.current.rotation.x += (targetX - points.current.rotation.x) * 0.08
+      points.current.rotation.y += (targetY - points.current.rotation.y) * 0.08
+    }
+  })
+  
+  return (
+    <Points ref={points} positions={positions} stride={3} frustumCulled>
+      <PointMaterial
+        transparent
+        color="#b7d7ff"
+        size={0.03}
+        sizeAttenuation
+        depthWrite={false}
+        opacity={0.85}
+      />
+    </Points>
+  )
 }
 
 export default function HeroCanvas() {
